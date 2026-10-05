@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roteiro Japão 2026/2027 - Definitivo com Ícones e Hotéis</title>
+    <title>Roteiro Japão 2026/2027 - Definitivo v4 (Auditado)</title>
     <style>
         :root {
             --bg-color: #FAFAFA;
@@ -18,7 +18,6 @@
             margin: 0; padding: 20px;
             background-color: var(--bg-color);
             color: var(--text-color);
-            /* Sol Nascente Minimalista + Monte Fuji ao Fundo */
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 900' preserveAspectRatio='none'%3E%3Ccircle cx='720' cy='450' r='340' fill='%23FDF2F2' opacity='0.7'/%3E%3Ccircle cx='720' cy='450' r='240' fill='%23FAE4E4' opacity='0.5'/%3E%3Cpath fill='%23F5EBEB' d='M0,900 L0,530 L540,230 L900,480 L1440,180 L1440,900 Z'/%3E%3C/svg%3E");
             background-size: cover;
             background-position: center;
@@ -157,6 +156,12 @@
             padding-left: 20px; 
             line-height: 1.8; 
             font-size: 14px;
+            color: #444;
+            font-style: italic;
+        }
+        .content-box.active {
+            font-style: normal;
+            color: var(--text-color);
         }
         a { 
             color: var(--accent-color); 
@@ -177,8 +182,8 @@
 </head>
 <body>
 
-<h2>Japão 2026/2027</h2>
-<p class="subtitle">Selecione o dia no calendário para visualizar os planos, logística e dicas</p>
+<h2>Japão 2026/2027 v4</h2>
+<p class="subtitle">Selecione o dia no calendário e clique num botão para visualizar os detalhes</p>
 
 <div class="calendar" id="calendar"></div>
 
@@ -191,7 +196,7 @@
         <button class="plan-btn log-btn" onclick="showPlan('LOG')">🧭 Como Chegar</button>
         <button class="plan-btn tips-btn" onclick="showPlan('DICAS')">💡 Dicas & Compras</button>
     </div>
-    <div id="content" class="content-box">Selecione uma opção acima.</div>
+    <div id="content" class="content-box">👈 Selecione uma das opções acima para exibir as informações.</div>
 </div>
 
 <script>
@@ -199,800 +204,631 @@ const tripData = {
     "31/12": {
         city: "Tóquio", hotel: "APA Ueno",
         iconA: "🚄 Skyliner", iconB: "🍜 Ramen", iconC: "🧳 Descanso",
-        A: `<strong>Plano A (Roteiro Original) - 31/12/2026 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Chegada em Narita às 18h00 e traslado direto via Keisei Skyliner para Ueno (<a href="https://www.keisei.co.jp/keisei/tetudou/skyliner/us/" target="_blank">Site Oficial Keisei Skyliner</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Bilhete do <a href="https://www.keisei.co.jp/keisei/tetudou/skyliner/us/" target="_blank">Keisei Skyliner</a> (¥ 2.570/pes) + cartões IC. Trem direto para Ueno (56 min)[cite: 1, 2].<br>
-            <strong>Vestimenta:</strong> Roupas de inverno (casacos corta-vento, térmicas)[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurante do Hotel APA Ueno ou lanchonetes na estação[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 14.280</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 31/12/2026 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Chegada, traslado idêntico e foco em acomodação confortável para repouso pós-voo no <a href="https://www.apahotel.com/" target="_blank">APA Hotel Ueno</a>[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Check-in direto no hotel e descanso[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.ichiran.com/" target="_blank">Ichiran Ramen Ueno</a> (<a href="https://www.ichiran.com/" target="_blank">Site Oficial</a>)[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 14.280</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 31/12/2026 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Chegada, traslado de Keisei Skyliner (<a href="https://www.keisei.co.jp/keisei/tetudou/skyliner/us/" target="_blank">Keisei</a>) e check-in direto no <a href="https://www.apahotel.com/" target="_blank">APA Hotel Ueno</a>. Noite de descanso total[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ir direto ao quarto sem passeios noturnos[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Lanches em Konbini (Lawson/7-Eleven)[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 14.280</span>[cite: 1, 2]`,
+        A: `<strong>Plano A - 31/12/2026 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Chegada em Narita às 18h00 e traslado direto via Keisei Skyliner para Ueno (<a href="https://www.keisei.co.jp/" target="_blank">Site Oficial Keisei Skyliner</a>). Check-in no APA Hotel Keisei Ueno Ekimae. Noite: Celebração de Ano Novo em templos[cite: 3].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 14.280</span>`,
+        B: `<strong>Plano B - 31/12/2026 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Chegada, traslado idêntico e foco em acomodação confortável para repouso pós-voo no APA Hotel Keisei Ueno Ekimae.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 14.280</span>`,
+        C: `<strong>Plano C - 31/12/2026 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Chegada, traslado e check-in direto com descanso total no APA Hotel Keisei Ueno Ekimae.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 14.280</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 31/12/2026 (Tóquio)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Aeroporto de Narita (Terminais 1 ou 2)[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Keisei-Ueno / APA Hotel Ueno[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Bilhete expresso Keisei Skyliner (¥ 2.570 por pessoa) + Cartão IC (Suica/Pasmo)[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Espera de 15 a 20 min pelo próximo trem; tempo de percurso direto de 56 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Aeroporto de Narita (Terminais 1 ou 2). Embarque no Keisei Skyliner direto para Ueno (56 min). Caminhada de 3 min até o APA Hotel Keisei Ueno Ekimae[cite: 3].</li>
+                <li><strong>VOLTA:</strong> Deslocamentos a pé ao redor de Ueno.</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 31/12/2026</strong><br><ol>
-            <li><strong><a href="https://www.uniqlo.com/jp/ja/" target="_blank">Uniqlo Okachimachi</a>:</strong> Maior flagshop da marca para garantir casacos térmicos Heattech logo na chegada[cite: 1, 2].</li>
-            <li><strong><a href="https://www.yodobashi.com/" target="_blank">Yodobashi Camera Ueno</a>:</strong> Excelente para câmeras, adaptadores universais e eletrônicos bivolt[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Ueno Station</a>:</strong> Conveniência essencial para saquês rápidos, onigiris e caixas eletrônicos 24h[cite: 1, 2].</li>
-            <li><strong><a href="https://www.ichiran.com/" target="_blank">Ichiran Ueno</a>:</strong> O clássico ramen com cabines individuais para uma refeição prática pós-voo[cite: 1, 2].</li>
-            <li><strong><a href="https://www.doutor.co.jp/" target="_blank">Doutor Coffee Ueno</a>:</strong> Cafeteria rápida e aconchegante para um café quente logo no desembarque[cite: 1, 2].</li>
-            <li><strong><a href="https://www.matsukiyococokara-online.com/" target="_blank">Matsumoto Kiyoshi Ueno</a>:</strong> Farmácia completa para remédios para viagem e primeiros socorros[cite: 1, 2].</li>
-            <li><strong><a href="https://www.ameyoko.net/" target="_blank">Ameyoko Shopping Street</a>:</strong> Mercado de rua animado com roupas, calçados e comidas de rua[cite: 1, 2].</li>
-            <li><strong><a href="https://www.atre.co.jp/ueno/" target="_blank">Atre Ueno Shopping</a>:</strong> Centro comercial integrado à estação com roupas casuais e acessórios[cite: 1, 2].</li>
-            <li><strong><a href="https://store.starbucks.co.jp/" target="_blank">Starbucks Ueno Park</a>:</strong> Café com vista arborizada para uma pausa relaxante[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Ueno Ekimae</a>:</strong> Conveniência ótima para garantir lanches e água para o hotel[cite: 1, 2].</li>
+            <li><strong>Uniqlo Okachimachi:</strong> Maior flagshop para casacos térmicos Heattech[cite: 3].</li>
+            <li><strong>Yodobashi Camera Ueno:</strong> Excelente para câmeras e adaptadores bivolt.</li>
+            <li><strong>7-Eleven Ueno Station:</strong> Essencial para onigiris e caixas 24h.</li>
+            <li><strong>Ichiran Ueno:</strong> Ramen clássico em cabines individuais.</li>
+            <li><strong>Doutor Coffee Ueno:</strong> Café quente logo no desembarque.</li>
+            <li><strong>Matsumoto Kiyoshi Ueno:</strong> Farmácia e remédios para viagem.</li>
+            <li><strong>Ameyoko Street:</strong> Mercado de rua animado.</li>
+            <li><strong>Atre Ueno:</strong> Centro comercial na estação.</li>
+            <li><strong>Starbucks Ueno Park:</strong> Pausa relaxante com vista arborizada.</li>
+            <li><strong>Lawson Ueno Ekimae:</strong> Lanches rápidos para o hotel.</li>
         </ol>`
     },
     "01/01": {
         city: "Tóquio", hotel: "APA Ueno",
-        iconA: "⛩️ Senso-ji", iconB: "🗼 Tokyo Tower", iconC: "🚕 Táxi Senso-ji",
-        A: `<strong>Plano A (Roteiro Original) - 01/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Visita ao <a href="https://www.senso-ji.jp/" target="_blank">Templo Senso-ji & Asakusa</a> para o Hatsumode (<a href="https://www.senso-ji.jp/" target="_blank">Site Oficial</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Metrô (Linha Ginza) até Asakusa. Manhã (09h00) para evitar picos[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.asakusa-imahan.co.jp/" target="_blank">Asakusa Imahan</a> (<a href="https://www.asakusa-imahan.co.jp/" target="_blank">Site</a>) ou barracas locais[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 8.400</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 01/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Templo Zojoji e Celebração no <a href="https://www.tokyotower.co.jp/" target="_blank">Parque Shiba / Tokyo Tower</a> (<a href="https://www.tokyotower.co.jp/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Metrô até Onarimon ou Daimon, caminhada plana[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.tokyotower.co.jp/" target="_blank">Tokyo Tower Restaurant</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 6.400</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 01/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Visita panorâmica leve ao <a href="https://www.senso-ji.jp/" target="_blank">Senso-ji</a> de táxi, com almoço tranquilo[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Táxi de Ueno para evitar estações lotadas[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.asakusa-imahan.co.jp/" target="_blank">Asakusa Imahan</a> (mesa reservada)[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 16.000</span>[cite: 1, 2]`,
+        iconA: "⛩️ Meiji Jingu", iconB: "🗼 Zojoji", iconC: "🚕 Táxi Meiji",
+        A: `<strong>Plano A - 01/01/2027 (Tóquio - Oshogatsu)</strong><br>
+            <strong>Atividade:</strong> Hatsumode (primeira oração do ano) no Meiji Jingu. (Atenção: Quase todo o comércio fecha. Silêncio absoluto no santuário)[cite: 3].<br>
+            <span class="cost-tag">Custo: Gratuito</span>`,
+        B: `<strong>Plano B - 01/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Visita silenciosa ao Templo Zojoji e Parque Shiba.<br>
+            <span class="cost-tag">Custo: Gratuito</span>`,
+        C: `<strong>Plano C - 01/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Visita panorâmica ao Meiji Jingu de táxi com almoço reservado.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 12.000</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 01/01/2027 (Tóquio)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> APA Hotel Ueno[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Templo Senso-ji (Asakusa)[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (Suica/Pasmo) na Linha Ginza de Metrô[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de trens a cada 3 a 5 min; tempo de percurso de 10 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Yamanote Line de Ueno até Harajuku (25 min). Caminhada até o Meiji Jingu[cite: 3].</li>
+                <li><strong>VOLTA:</strong> Yamanote Line de Harajuku de volta a Ueno (25 min).</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 01/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.senso-ji.jp/" target="_blank">Senso-ji Temple Nakamise</a>:</strong> Ruazinha histórica com lojas tradicionais de souvenirs abertas no Ano Novo[cite: 1, 2].</li>
-            <li><strong><a href="https://www.biccamera.com/" target="_blank">Bic Camera Akiba</a>:</strong> Próximo a Asakusa, aberto com promoções especiais de Ano-Novo[cite: 1, 2].</li>
-            <li><strong><a href="https://www.asakusa-imahan.co.jp/" target="_blank">Asakusa Imahan</a>:</strong> Tradicionalíssimo em Sukiyaki, ideal para celebrar o primeiro dia do ano[cite: 1, 2].</li>
-            <li><strong><a href="https://asakusa-kagetsudo.com/" target="_blank">Kagetsudo Asakusa</a>:</strong> Famoso pelo pão doce japonês Melonpan fresco e quentinho[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Asakusa</a>:</strong> Perfeito para doces Uchi Café e frango frito Karaage-kun[cite: 1, 2].</li>
-            <li><strong><a href="https://www.tokyo-skytree.jp/" target="_blank">Tokyo Skytree Town Solamachi</a>:</strong> Complexo de compras gigante com centenas de lojas de moda e eletrônicos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sumida-kanko.jp/" target="_blank">Sumida Riverside Hall Cafe</a>:</strong> Cafeteria tranquila com vista panorâmica para o rio Sumida[cite: 1, 2].</li>
-            <li><strong><a href="https://www.donki.com/" target="_blank">Don Quijote Asakusa</a>:</strong> A famosa loja de departamentos caótica para maquiagens e eletrônicos variados[cite: 1, 2].</li>
-            <li><strong><a href="https://www.city.taito.lg.jp/" target="_blank">Asakusa Culture Tourist Center Cafe</a>:</strong> Cafeteria no topo de um prédio arquitetônico com vista livre de Asakusa[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Asakusa Kaminarimon</a>:</strong> Conveniência com lanches rápidos bem em frente ao portão principal[cite: 1, 2].</li>
+            <li><strong>Meiji Jingu Shops:</strong> Souvenirs tradicionais de Ano Novo.</li>
+            <li><strong>Yoyogi Stalls:</strong> Barracas tradicionais de festividades.</li>
+            <li><strong>Konbini Abertos:</strong> 7-Eleven e Lawson para lanches essenciais.</li>
+            <li><strong>Cafés Harajuku:</strong> Estabelecimentos selecionados abertos.</li>
+            <li><strong>Lawson Harajuku:</strong> Doces Uchi Café.</li>
+            <li><strong>Takeshita Street (Parcial):</strong> Algumas lojas abertas.</li>
+            <li><strong>Omotesando Hills:</strong> Arquitetura e fachada iluminada.</li>
+            <li><strong>Starbucks Harajuku:</strong> Café quente na região.</li>
+            <li><strong>7-Eleven Ueno:</strong> Retorno ao hotel.</li>
+            <li><strong>FamilyMart Uji:</strong> Suporte rápido.</li>
         </ol>`
     },
     "02/01": {
         city: "Tóquio", hotel: "APA Ueno",
-        iconA: "🌆 Shibuya Sky", iconB: "🏛️ Museu Nezu", iconC: "🏙️ Shibuya Coberto",
-        A: `<strong>Plano A (Roteiro Original) - 02/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Meiji Jingu, Parque Yoyogi, Harajuku e <a href="https://www.shibuya-scramble-square.com/" target="_blank">Shibuya Sky</a> (<a href="https://www.shibuya-scramble-square.com/" target="_blank">Site Oficial</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingressos do <a href="https://www.shibuya-scramble-square.com/" target="_blank">Shibuya Sky</a> antecipados. Metrô até Harajuku/Shibuya[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes no Shibuya Scramble Square[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 11.300</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 02/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> <a href="https://www.nezu-muse.or.jp/en/" target="_blank">Museu Nezu</a> e Bairro de Yanaka (<a href="https://www.nezu-muse.or.jp/en/" target="_blank">Site Nezu</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingressos do <a href="https://www.nezu-muse.or.jp/en/" target="_blank">Museu Nezu</a>. Metrô até Omotesando[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Cafés tradicionais em Yanaka[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 13.000</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 02/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> <a href="https://www.shibuya-scramble-square.com/" target="_blank">Shibuya Sky</a> (observatório coberto) e café contemplativo[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Táxi direto ao Shibuya Scramble Square[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Cafeterias com vista panorâmica em Shibuya[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 19.300</span>[cite: 1, 2]`,
+        iconA: "⛩️ Senso-ji", iconB: "🗼 Skytree", iconC: "🚕 Táxi Asakusa",
+        A: `<strong>Plano A - 02/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Yamanote Line para Asakusa (Senso-ji, 3h de visita). Tarde: Tokyo Skytree[cite: 3, 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 3.500</span>`,
+        B: `<strong>Plano B - 02/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Senso-ji e arredores históricos de Asakusa.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 1.500</span>`,
+        C: `<strong>Plano C - 02/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Senso-ji e Skytree com transporte particular (táxi).<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 12.000</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 02/01/2027 (Tóquio)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> APA Hotel Ueno[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Harajuku / Shibuya Sky[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (Suica/Pasmo) via JR Yamanote Line ou Metrô[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de trens de 3 min; tempo de percurso de 25 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Yamanote Line de Ueno até Asakusa (10 min)[cite: 4].</li>
+                <li><strong>VOLTA:</strong> Metrô de Asakusa de volta a Ueno (10 min).</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 02/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.uniqlo.com/jp/ja/" target="_blank">Uniqlo Harajuku</a>:</strong> Moda urbana e casacos leves no complexo With Harajuku[cite: 1, 2].</li>
-            <li><strong><a href="https://www.at-cosme.net/" target="_blank">Atcosme Tokyo (Harajuku)</a>:</strong> Maior multimarca de cosméticos e maquiagens do Japão com produtos testáveis[cite: 1, 2].</li>
-            <li><strong><a href="https://www.shibuya-scramble-square.com/" target="_blank">Shibuya Sky</a>:</strong> Observatório com vista panorâmica espetacular de Tóquio[cite: 1, 2].</li>
-            <li><strong><a href="https://www.biccamera.com/" target="_blank">Bic Camera Shibuya Hachiko</a>:</strong> Amplo estoque de eletrônicos internacionais e celulares[cite: 1, 2].</li>
-            <li><strong><a href="https://www.ichiran.com/" target="_blank">Ichiran Shibuya</a>:</strong> Próximo ao cruzamento famoso para uma refeição rápida[cite: 1, 2].</li>
-            <li><strong><a href="https://www.takeshita-street.com/" target="_blank">Takeshita Street Boutiques</a>:</strong> Lojas de roupas descoladas e acessórios de moda jovem[cite: 1, 2].</li>
-            <li><strong><a href="https://tokyu-plaza.com/" target="_blank">Tokyu Plaza Omotesando Harajuku</a>:</strong> Shopping moderno com terraço arborizado e marcas conceituadas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.loft.co.jp/" target="_blank">Shibuya Loft</a>:</strong> Loja de múltiplos andares com maquiagens, itens de beleza e presentes criativos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.starbucks.co.jp/" target="_blank">Starbucks Reserve Roastery Tokyo</a>:</strong> A maior e mais luxuosa unidade da marca no mundo (em Nakameguro)[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Shibuya Center Gai</a>:</strong> Conveniência prática no coração de Shibuya[cite: 1, 2].</li>
+            <li><strong>Senso-ji Nakamise:</strong> Souvenirs tradicionais.</li>
+            <li><strong>Skytree Solamachi:</strong> Centro comercial e moda.</li>
+            <li><strong>Asakusa Imahan:</strong> Sukiyaki tradicional.</li>
+            <li><strong>Kagetsudo Melonpan:</strong> Famoso pão doce.</li>
+            <li><strong>Lawson Asakusa:</strong> Lanches rápidos.</li>
+            <li><strong>Sumida Riverside Cafe:</strong> Vista para o rio.</li>
+            <li><strong>Don Quijote Asakusa:</strong> Loja de departamentos.</li>
+            <li><strong>Tourist Center Cafe:</strong> Vista panorâmica.</li>
+            <li><strong>Bic Camera Akiba:</strong> Eletrônicos próximos.</li>
+            <li><strong>FamilyMart Asakusa:</strong> Suporte.</li>
         </ol>`
     },
     "03/01": {
         city: "Tóquio", hotel: "APA Ueno",
-        iconA: "🏙️ Roppongi Hills", iconB: "🛍️ Shimokitazawa", iconC: "☕ Roppongi Indoor",
-        A: `<strong>Plano A (Roteiro Original) - 03/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> <a href="https://www.roppongihills.com/" target="_blank">Roppongi Hills</a> e Tokyo Tower no entardecer (<a href="https://www.roppongihills.com/" target="_blank">Site Roppongi</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Acesso ao terraço de <a href="https://www.roppongihills.com/" target="_blank">Roppongi Hills</a>. Metrô Linha Hibiya[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes em Roppongi Hills[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 10.200</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 03/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Bairro de <a href="https://www.shimokitazawa.info/" target="_blank">Shimokitazawa</a> (<a href="https://www.shimokitazawa.info/" target="_blank">Guia Oficial</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem Odakyu ou Keio Inokashira a partir de Shinjuku[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.shimokitazawa.info/" target="_blank">Cafés e bistrôs em Shimokitazawa</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 9.600</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 03/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Passeio protegido do frio em shoppings e galerias cobertas em <a href="https://www.roppongihills.com/" target="_blank">Roppongi</a>[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Táxi de Ueno a Roppongi e circulação interna[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Praça de alimentação em Roppongi[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 15.500</span>[cite: 1, 2]`,
+        iconA: "🔌 Akihabara", iconB: "🏛️ Museus Ueno", iconC: "🍜 Gastronomia",
+        A: `<strong>Plano A - 03/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Yamanote Line para Akihabara. Tarde: Museus de Ueno (3h). Noite: Gastronomia local[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 2.500</span>`,
+        B: `<strong>Plano B - 03/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Foco em Akihabara e tecnologia.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 1.000</span>`,
+        C: `<strong>Plano C - 03/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Museus de Ueno e compras em Akihabara de táxi.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 8.000</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 03/01/2027 (Tóquio)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> APA Hotel Ueno[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Roppongi[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (Suica/Pasmo) via Metrô Linha Hibiya[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de 4 min; tempo de percurso de 20 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Caminhada curta de Ueno até Akihabara (5 min) ou Yamanote Line[cite: 4].</li>
+                <li><strong>VOLTA:</strong> Retorno a pé ao hotel em Ueno.</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 03/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.shimokitazawa.info/" target="_blank">Shimokitazawa Vintage Alley</a>:</strong> Brechós e lojas de roupas usadas com peças autênticas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.roppongihills.com/" target="_blank">Roppongi Hills</a>:</strong> Complexo de luxo com alta gastronomia e lojas de grife[cite: 1, 2].</li>
-            <li><strong><a href="https://bluebottlecoffee.jp/" target="_blank">Blue Bottle Coffee Roppongi</a>:</strong> Café especial de alta qualidade com arquitetura minimalista[cite: 1, 2].</li>
-            <li><strong><a href="https://www.yamada-denki.jp/" target="_blank">Yamada Denki Labi Shinbashi</a>:</strong> Grande variedade de eletrônicos e eletrodomésticos bivolt[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Roppongi</a>:</strong> O famoso frango Famichiki e bebidas quentes[cite: 1, 2].</li>
-            <li><strong><a href="https://www.mori.art.museum/" target="_blank">Mori Art Museum Shop</a>:</strong> Loja de design e souvenirs exclusivos de arte contemporânea[cite: 1, 2].</li>
-            <li><strong><a href="https://store.tsite.jp/daikanyama/" target="_blank">Tsutaya Books Daikanyama</a>:</strong> Livraria icônica com cafés aconchegantes e ambiente sofisticado[cite: 1, 2].</li>
-            <li><strong><a href="https://ainz-tulpe.jp/" target="_blank">Ainz & Tulpe Roppongi</a>:</strong> Loja excelente de cosméticos coreanos e japoneses[cite: 1, 2].</li>
-            <li><strong><a href="https://www.tokyo-midtown.com/" target="_blank">Midtown Tower Shops</a>:</strong> Lojas de vestuário e produtos de design japonês de alto padrão[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Roppongi 7-chome</a>:</strong> Parada prática para lanches rápidos na região[cite: 1, 2].</li>
+            <li><strong>Yodobashi Akiba:</strong> Eletrônicos e games.</li>
+            <li><strong>Ueno Royal Museum:</strong> Exposições de arte.</li>
+            <li><strong>Camp Curry:</strong> Curry japonês em panelas.</li>
+            <li><strong>Gundam Cafe:</strong> Cultura pop.</li>
+            <li><strong>Akiba Cultures Zone:</strong> Colecionáveis.</li>
+            <li><strong>Tokyo National Museum:</strong> História japonesa.</li>
+            <li><strong>7-Eleven Akiba:</strong> Conveniência.</li>
+            <li><strong>Bic Camera Akiba:</strong> Eletrônicos.</li>
+            <li><strong>Lawson Ueno:</strong> Suporte.</li>
+            <li><strong>FamilyMart Akiba:</strong> Lanches.</li>
         </ol>`
     },
     "04/01": {
         city: "Osaka", hotel: "APA Namba",
-        iconA: "🚄 Shinkansen", iconB: "🏮 Dotonbori", iconC: "🚖 Táxi Namba",
-        A: `<strong>Plano A (Roteiro Original) - 04/01/2027 (Tóquio para Osaka)</strong><br>
-            <strong>Atividade:</strong> Shinkansen para Shin-Osaka via <a href="https://smart-ex.jp/" target="_blank">SmartEX</a>; Shinsekai e Dotonbori[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Shinkansen via <a href="https://smart-ex.jp/" target="_blank">SmartEX</a>. Metrô Midosuji até Namba[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.tsutenkaku.co.jp/" target="_blank">Kushikatsu Yaekatsu em Shinsekai</a> (<a href="https://www.tsutenkaku.co.jp/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 62.480</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 04/01/2027 (Tóquio para Osaka)</strong><br>
-            <strong>Atividade:</strong> Deslocamento idêntico; <a href="https://konjyakukan.com/" target="_blank">Museu de Moradia e Vida de Osaka</a> (<a href="https://konjyakukan.com/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingressos no <a href="https://konjyakukan.com/" target="_blank">Museu de Moradia</a>. Metrô Tanimachi[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Praça temática do museu[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 64.880</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 04/01/2027 (Tóquio para Osaka)</strong><br>
-            <strong>Atividade:</strong> Shinkansen com assento reservado e táxi até o <a href="https://www.apahotel.com/" target="_blank">APA Hotel Namba</a>[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Reservar assentos de bagagem grande e pegar táxi em Shin-Osaka[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurante interno do <a href="https://www.apahotel.com/" target="_blank">APA Hotel Namba</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 63.380</span>[cite: 1, 2]`,
-        LOG: `<strong>🧭 Logística Detalhada - 04/01/2027 (Tóquio para Osaka)</strong><br>
+        iconA: "🧳 Takkyubin", iconB: "🚄 Shinkansen", iconC: "🏨 APA Namba",
+        A: `<strong>Plano A - 04/01/2027 (Tóquio p/ Osaka)</strong><br>
+            <strong>Atividade:</strong> Logística Crucial: Uso do serviço Takkyubin para enviar as 4 malas grandes diretamente para Osaka. Shinkansen Tokaido para Osaka. Check-in no APA Hotel & Resort Osaka Namba Ekimae Tower[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 58.000</span>`,
+        B: `<strong>Plano B - 04/01/2027 (Tóquio p/ Osaka)</strong><br>
+            <strong>Atividade:</strong> Envio de malas via Takkyubin e Shinkansen Tokaido para Osaka[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 58.000</span>`,
+        C: `<strong>Plano C - 04/01/2027 (Tóquio p/ Osaka)</strong><br>
+            <strong>Atividade:</strong> Shinkansen com assentos reservados e táxi em Osaka até o hotel[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 61.000</span>`,
+        LOG: `<strong>🧭 Logística Detalhada - 04/01/2027 (Tóquio p/ Osaka)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Estação de Tóquio ou Shinagawa[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Shin-Osaka / Namba[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Bilhete de Shinkansen Tokaido (SmartEX) com reserva de espaço para bagagem volumosa + Cartão IC para o Metrô Midosuji[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Chegar 20 min antes na plataforma; percurso de trem de 2h30 + 15 min de metrô[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Envio de malas via Takkyubin na recepção de Ueno. Shinkansen Tokaido de Tóquio até Shin-Osaka (2h30). Metrô até Namba e caminhada até o APA Hotel & Resort Osaka Namba Ekimae Tower[cite: 4].</li>
+                <li><strong>VOLTA:</strong> Hospedagem em Osaka.</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 04/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.shinsaibashi.or.jp/" target="_blank">Shinsaibashi-suji Shopping Street</a>:</strong> Galeria coberta gigante com centenas de lojas de moda e roupas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.biccamera.com/" target="_blank">Bic Camera Namba</a>:</strong> Eletrônicos com isenção de impostos para turistas perto da estação[cite: 1, 2].</li>
-            <li><strong><a href="https://www.matsukiyococokara-online.com/" target="_blank">Matsumoto Kiyoshi Shinsaibashi</a>:</strong> Farmácia gigante para maquiagens e produtos de beleza[cite: 1, 2].</li>
-            <li><strong><a href="https://www.konamon.com/" target="_blank">Dotonbori Konamon Museum</a>:</strong> Especializado em Takoyaki autêntico de Osaka[cite: 1, 2].</li>
-            <li><strong><a href="https://www.tullys.co.jp/" target="_blank">Tully's Coffee Namba</a>:</strong> Cafeteria aconchegante para pausas durante as compras[cite: 1, 2].</li>
-            <li><strong><a href="https://edion.com/" target="_blank">EDION Namba Main Store</a>:</strong> Megastore de eletrônicos e tecnologia em Osaka[cite: 1, 2].</li>
-            <li><strong><a href="https://nambaparks.com/" target="_blank">Namba Parks Shopping Mall</a>:</strong> Shopping moderno com jardins suspensos e marcas de roupas variadas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Namba Station</a>:</strong> Conveniência ideal para saques e lanches rápidos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.tsutenkaku.co.jp/" target="_blank">Kushikatsu Yaekatsu (Shinsekai)</a>:</strong> Famoso restaurante de espetinhos empanados de Osaka[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Dotonbori</a>:</strong> Localizado na área mais agitada de Dotonbori[cite: 1, 2].</li>
+            <li><strong>Takkyubin Service:</strong> Envio seguro de bagagem[cite: 4].</li>
+            <li><strong>Shinkansen Station:</strong> Lojas de bento na estação.</li>
+            <li><strong>Bic Camera Namba:</strong> Eletrônicos em Osaka.</li>
+            <li><strong>Shinsaibashi-suji:</strong> Galerias comerciais.</li>
+            <li><strong>EDION Namba:</strong> Megastore de tecnologia.</li>
+            <li><strong>Namba Parks:</strong> Jardins e compras.</li>
+            <li><strong>7-Eleven Namba:</strong> Saques e lanches.</li>
+            <li><strong>Matsumoto Kiyoshi:</strong> Farmácia.</li>
+            <li><strong>FamilyMart Namba:</strong> Conveniência.</li>
+            <li><strong>APA Hotel Namba:</strong> Acomodação[cite: 3].</li>
         </ol>`
     },
     "05/01": {
         city: "Osaka", hotel: "APA Namba",
-        iconA: "🎢 USJ Universal", iconB: "🐧 Aquário Kaiyukan", iconC: "🛍️ Shinsaibashi",
-        A: `<strong>Plano A (Roteiro Original) - 05/01/2027 (Osaka)</strong><br>
-            <strong>Atividade:</strong> <a href="https://www.usj.co.jp/" target="_blank">Universal Studios Japan (USJ)</a> com Express Pass (<a href="https://www.usj.co.jp/" target="_blank">Site Oficial</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingressos e Express Pass antecipados na <a href="https://www.usj.co.jp/" target="_blank">USJ</a>. Linha JR Yumesaki[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Three Broomsticks (Harry Potter) na USJ[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 82.400</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 05/01/2027 (Osaka)</strong><br>
-            <strong>Atividade:</strong> <a href="https://www.kaiyukan.com/" target="_blank">Aquário Kaiyukan</a> e Baía de Osaka (<a href="https://www.kaiyukan.com/" target="_blank">Site Oficial</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingressos online para o <a href="https://www.kaiyukan.com/" target="_blank">Kaiyukan</a>. Metrô Chuo até Osakako[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Tempozan Marketplace na baía[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 14.000</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 05/01/2027 (Osaka)</strong><br>
-            <strong>Atividade:</strong> Passeio calmo pela Galeria Shinsaibashi-suji com pausas em cafeterias[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> A pé a partir do hotel em Namba[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Cafeterias tradicionais na galeria coberta[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 8.000</span>[cite: 1, 2]`,
+        iconA: "🎢 USJ", iconB: "🐧 Kaiyukan", iconC: "🛍️ Shinsaibashi",
+        A: `<strong>Plano A - 05/01/2027 (Osaka)</strong><br>
+            <strong>Atividade:</strong> JR Yumesaki Line para Universal Studios Japan (USJ). Dia inteiro[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 82.400</span>`,
+        B: `<strong>Plano B - 05/01/2027 (Osaka)</strong><br>
+            <strong>Atividade:</strong> Aquário Kaiyukan e Baía de Osaka.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 14.000</span>`,
+        C: `<strong>Plano C - 05/01/2027 (Osaka)</strong><br>
+            <strong>Atividade:</strong> USJ com transporte particular e conforto.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 85.000</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 05/01/2027 (Osaka)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> APA Hotel Namba[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Universal City (USJ) ou Osakako (Kaiyukan)[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (Suica/Pasmo/ICOCA) nas linhas JR Yumesaki ou Metrô Linha Chuo[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de trens de 5 a 7 min; tempo de percurso de 25 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Metrô de Namba até Umeda + JR Yumesaki Line até Universal City (35 min).</li>
+                <li><strong>VOLTA:</strong> Percurso inverso até o hotel em Namba.</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 05/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.usj.co.jp/" target="_blank">Universal Studios Store Osaka</a>:</strong> Casacos e moletons temáticos oficiais de Harry Potter e Nintendo[cite: 1, 2].</li>
-            <li><strong><a href="https://www.usj.co.jp/" target="_blank">Three Broomsticks (USJ)</a>:</strong> Restaurante temático com pratos britânicos clássicos dentro do parque[cite: 1, 2].</li>
-            <li><strong><a href="https://www.kaiyukan.com/" target="_blank">Tempozan Marketplace</a>:</strong> Centro comercial com lojas de roupas e praça de alimentação na baía[cite: 1, 2].</li>
-            <li><strong><a href="https://www.kaiyukan.com/" target="_blank">Kaiyukan Cafe</a>:</strong> Cafeteria com vista relaxante para o mar e pinguins[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Osaka Bay</a>:</strong> Parada rápida para água e snacks rumo ao aquário[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Universal Citywalk</a>:</strong> Conveniência completa na entrada do complexo da USJ[cite: 1, 2].</li>
-            <li><strong><a href="https://www.hardrock.com/" target="_blank">Hard Rock Cafe Osaka Universal</a>:</strong> Restaurante clássico com itens colecionáveis e hambúrgueres[cite: 1, 2].</li>
-            <li><strong><a href="https://www.kaiyukan.com/" target="_blank">Osaka Aquarium Gift Shop</a>:</strong> Loja de lembranças com bichinhos de pelúcia marinhos de alta qualidade[cite: 1, 2].</li>
-            <li><strong><a href="https://store.starbucks.co.jp/" target="_blank">Starbucks Universal Citywalk</a>:</strong> Café aconchegante antes de entrar nas atrações[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Osaka Bay</a>:</strong> Lanches práticos para o dia de passeio na baía[cite: 1, 2].</li>
+            <li><strong>USJ Store:</strong> Produtos temáticos.</li>
+            <li><strong>Three Broomsticks:</strong> Restaurante Harry Potter.</li>
+            <li><strong>Tempozan Marketplace:</strong> Compras na baía.</li>
+            <li><strong>Kaiyukan Cafe:</strong> Vista para o mar.</li>
+            <li><strong>7-Eleven Bay:</strong> Parada rápida.</li>
+            <li><strong>Lawson Citywalk:</strong> Conveniência USJ.</li>
+            <li><strong>Hard Rock Cafe:</strong> Hambúrgueres.</li>
+            <li><strong>Aquarium Gift Shop:</strong> Pelúcias marinhas.</li>
+            <li><strong>Starbucks USJ:</strong> Café.</li>
+            <li><strong>FamilyMart Bay:</strong> Suporte.</li>
         </ol>`
     },
     "06/01": {
         city: "Osaka", hotel: "APA Namba",
-        iconA: "🦌 Parque Nara", iconB: "🏯 Horyu-ji", iconC: "🚖 Nara Tranquilo",
-        A: `<strong>Plano A (Roteiro Original) - 06/01/2027 (Osaka / Nara)</strong><br>
-            <strong>Atividade:</strong> Bate-e-volta a Nara (<a href="https://www.todaiji.or.jp/" target="_blank">Todai-ji</a> e Kasuga Taisha) (<a href="https://www.todaiji.or.jp/" target="_blank">Site Todai-ji</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem Kintetsu-Nara (40 min). Entrada do <a href="https://www.todaiji.or.jp/" target="_blank">Todai-ji</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes tradicionais perto do Parque de Nara[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 7.200</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 06/01/2027 (Osaka / Nara)</strong><br>
-            <strong>Atividade:</strong> Templo <a href="https://www.horyuji.or.jp/" target="_blank">Horyu-ji</a> e Parque de Nara (<a href="https://www.horyuji.or.jp/" target="_blank">Site Horyu-ji</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem JR Yamatoji até Horyuji. Entrada do <a href="https://www.horyuji.or.jp/" target="_blank">Horyu-ji</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Casas de chá locais em Horyuji[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 9.500</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 06/01/2027 (Osaka / Nara)</strong><br>
-            <strong>Atividade:</strong> Visita leve à área plana do <a href="https://www.todaiji.or.jp/" target="_blank">Parque de Nara</a>, evitando subidas[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Táxi da estação de Nara até a entrada plana do parque[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes acessíveis na entrada do parque[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 7.800</span>[cite: 1, 2]`,
-        LOG: `<strong>🧭 Logística Detalhada - 06/01/2027 (Osaka / Nara)</strong><br>
+        iconA: "🏯 Castelo Osaka", iconB: "🏮 Shinsekai", iconC: "🍜 Dotonbori",
+        A: `<strong>Plano A - 06/01/2027 (Osaka)</strong><br>
+            <strong>Atividade:</strong> Castelo de Osaka (2h). Tarde: Shinsekai. Noite: Dotonbori[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 16.800</span>`,
+        B: `<strong>Plano B - 06/01/2027 (Osaka)</strong><br>
+            <strong>Atividade:</strong> Castelo de Osaka e Shinsekai tradicional.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 6.000</span>`,
+        C: `<strong>Plano C - 06/01/2027 (Osaka)</strong><br>
+            <strong>Atividade:</strong> Castelo e tour gastronômico em Dotonbori de táxi.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 16.000</span>`,
+        LOG: `<strong>🧭 Logística Detalhada - 06/01/2027 (Osaka)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Estação Kintetsu-Namba (Osaka)[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Kintetsu-Nara[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Bilhete Kintetsu Line (Expresso) ou Cartão IC[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de 15 min; tempo de percurso de 40 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Metrô de Namba até Tanimachiyonchome para o Castelo de Osaka (15 min).</li>
+                <li><strong>VOLTA:</strong> Metrô de volta a Namba.</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 06/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.visitnara.jp/" target="_blank">Nara Sanjo Dori Street</a>:</strong> Lojas tradicionais de vestuário artesanal e cerâmicas locais[cite: 1, 2].</li>
-            <li><strong><a href="https://www.joshin.co.jp/" target="_blank">Joshin Nara Store</a>:</strong> Rede tradicional de eletrônicos na província de Nara[cite: 1, 2].</li>
-            <li><strong><a href="https://www.visitnara.jp/" target="_blank">Kura Kura Nara</a>:</strong> Famoso restaurante de culinária local e curry japonês[cite: 1, 2].</li>
-            <li><strong><a href="https://www.rokumeicoffee.com/" target="_blank">Rokumei Coffee Co. Nara</a>:</strong> Cafeteria premiada com grãos especiais na região[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Nara Station</a>:</strong> Parada estratégica antes de pegar o trem para os templos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.visitnara.jp/" target="_blank">Higashimuki Shopping Street</a>:</strong> Galeria coberta com lojas de souvenirs, roupas e doces de Nara[cite: 1, 2].</li>
-            <li><strong><a href="https://www.visitnara.jp/" target="_blank">Nakatanidou (Nara)</a>:</strong> Conhecida mundialmente pelo preparo ao vivo do bolinho Mochi[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Kintetsu Nara</a>:</strong> Conveniência prática ao lado da estação de trem[cite: 1, 2].</li>
-            <li><strong><a href="https://store.starbucks.co.jp/" target="_blank">Starbucks Nara Hihandori</a>:</strong> Café moderno para descansar após caminhar no parque[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Nara Station</a>:</strong> Lanches rápidos para repor as energias[cite: 1, 2].</li>
+            <li><strong>Osaka Castle Park:</strong> Jardins históricos.</li>
+            <li><strong>Kuromon Ichiba:</strong> Mercado de rua.</li>
+            <li><strong>Yaekatsu Shinsekai:</strong> Kushikatsu tradicional.</li>
+            <li><strong>Dotonbori Museum:</strong> Cultura local.</li>
+            <li><strong>TsuruTonTan:</strong> Udon famoso.</li>
+            <li><strong>Standard Products:</strong> Design minimalista.</li>
+            <li><strong>Tokyu Hands:</strong> Utilidades.</li>
+            <li><strong>Daimaru Shinsaibashi:</strong> Luxo.</li>
+            <li><strong>7-Eleven Namba:</strong> Conveniência.</li>
+            <li><strong>FamilyMart Dotonbori:</strong> Suporte.</li>
         </ol>`
     },
     "07/01": {
         city: "Osaka", hotel: "APA Namba",
-        iconA: "🏯 Castelo Osaka", iconB: "👖 Orange Street", iconC: "🍜 Udon Dotonbori",
-        A: `<strong>Plano A (Roteiro Original) - 07/01/2027 (Osaka)</strong><br>
-            <strong>Atividade:</strong> <a href="https://www.osakacastle.net/" target="_blank">Castelo de Osaka</a>, Kuromon Ichiba (<a href="https://kuromon.com/" target="_blank">Kuromon</a>) e Dotonbori (<a href="https://www.osakacastle.net/" target="_blank">Site Castelo</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingresso do <a href="https://www.osakacastle.net/" target="_blank">Castelo de Osaka</a>. Metrô municipal[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://kuromon.com/" target="_blank">Kuromon Ichiba</a> e Dotonbori[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 16.800</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 07/01/2027 (Osaka)</strong><br>
-            <strong>Atividade:</strong> Amerikamura e <a href="orangestreet.jp" target="_blank">Orange Street</a> (<a href="orangestreet.jp" target="_blank">Guia Orange St</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> A pé a partir de Namba[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="orangestreet.jp" target="_blank">Cafés de design em Orange Street</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 6.000</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 07/01/2027 (Osaka)</strong><br>
-            <strong>Atividade:</strong> Tour gastronômico sentado em Dotonbori no <a href="https://www.tsuruutontan.com/" target="_blank">TsuruTonTan</a>[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> A pé ou de táxi até Dotonbori[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.tsuruutontan.com/" target="_blank">TsuruTonTan Dotonbori</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 16.000</span>[cite: 1, 2]`,
-        LOG: `<strong>🧭 Logística Detalhada - 07/01/2027 (Osaka)</strong><br>
+        iconA: "🦌 Nara", iconB: "⛩️ Todai-ji", iconC: "🚖 Nara Privativo",
+        A: `<strong>Plano A - 07/01/2027 (Nara)</strong><br>
+            <strong>Atividade:</strong> Yamatoji Line para Nara. Templo Todai-ji (3h). ¥ 600[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 7.200</span>`,
+        B: `<strong>Plano B - 07/01/2027 (Nara)</strong><br>
+            <strong>Atividade:</strong> Parque de Nara e Kasuga Taisha.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 7.200</span>`,
+        C: `<strong>Plano C - 07/01/2027 (Nara)</strong><br>
+            <strong>Atividade:</strong> Nara com traslado privativo e conforto.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 15.000</span>`,
+        LOG: `<strong>🧭 Logística Detalhada - 07/01/2027 (Nara)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> APA Hotel Namba[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Tanimachi 4-chome (Castelo de Osaka)[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (Metrô Municipal Linha Tanimachi)[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de 4 min; tempo de percurso de 15 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Trem JR Yamatoji de JR Namba até Nara (40 min).</li>
+                <li><strong>VOLTA:</strong> Trem JR Yamatoji de Nara até Namba (40 min).</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 07/01/2027</strong><br><ol>
-            <li><strong><a href="orangestreet.jp" target="_blank">Orange Street (Tachibana-dori)</a>:</strong> Lojas de design, streetwear e marcas independentes de roupas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.tsuruutontan.com/" target="_blank">TsuruTonTan Dotonbori</a>:</strong> O lendário restaurante de tigelas gigantes de macarrão Udon[cite: 1, 2].</li>
-            <li><strong><a href="https://www.kokumin.co.jp/" target="_blank">Kokumin Drug Shinsaibashi</a>:</strong> Farmácia com ótimos preços em maquiagens japonesas[cite: 1, 2].</li>
-            <li><strong><a href="https://standardproducts.jp/" target="_blank">Standard Products Osaka</a>:</strong> Loja de design minimalista com utensílios e decoração[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Orange St</a>:</strong> Ótima seleção de lanches rápidos na rua de design[cite: 1, 2].</li>
-            <li><strong><a href="https://www.osakacastle.net/" target="_blank">Osaka Castle Park Kiosk Cafe</a>:</strong> Cafeteria ao ar livre com vista para o castelo histórico[cite: 1, 2].</li>
-            <li><strong><a href="https://www.hands.net/" target="_blank">Tokyu Hands Shinsaibashi</a>:</strong> Loja gigante de utilidades, maquiagem e presentes criativos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.daimaru.co.jp/shinsaibashi/" target="_blank">Daimaru Shinsaibashi Department Store</a>:</strong> Loja de departamentos de luxo com marcas globais de moda[cite: 1, 2].</li>
-            <li><strong><a href="https://store.starbucks.co.jp/" target="_blank">Starbucks Osaka Castle</a>:</strong> Café com arquitetura integrada aos jardins do castelo[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Shinsaibashi Ekimae</a>:</strong> Conveniência central de fácil acesso[cite: 1, 2].</li>
+            <li><strong>Nara Sanjo Dori:</strong> Lojas artesanais.</li>
+            <li><strong>Todai-ji Shops:</strong> Souvenirs.</li>
+            <li><strong>Kura Kura Nara:</strong> Culinária local.</li>
+            <li><strong>Rokumei Coffee:</strong> Grãos especiais.</li>
+            <li><strong>Lawson Nara:</strong> Parada rápida.</li>
+            <li><strong>Higashimuki Street:</strong> Comércio coberto.</li>
+            <li><strong>Nakatanidou Mochi:</strong> Bolinho Mochi ao vivo.</li>
+            <li><strong>7-Eleven Kintetsu:</strong> Estação.</li>
+            <li><strong>Starbucks Nara:</strong> Café.</li>
+            <li><strong>FamilyMart Nara:</strong> Snacks.</li>
         </ol>`
     },
     "08/01": {
         city: "Quioto", hotel: "Grand Bach",
-        iconA: "🚄 Trem Quioto", iconB: "🌸 Gion Caminho", iconC: "🏨 Grand Bach",
-        A: `<strong>Plano A (Roteiro Original) - 08/01/2027 (Osaka para Quioto)</strong><br>
-            <strong>Atividade:</strong> Traslado via JR Special Rapid; Gion e Santuário Heian (<a href="https://kyoto.travel/" target="_blank">Guia Quioto</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem JR Special Rapid (30 min) + ônibus até Gion[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes tradicionais em Gion[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 3.480</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 08/01/2027 (Osaka para Quioto)</strong><br>
-            <strong>Atividade:</strong> Deslocamento idêntico; Caminho do Filósofo (<a href="https://kyoto.travel/" target="_blank">Guia Quioto</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem JR + táxi opcional[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Cafés ao longo do <a href="https://kyoto.travel/" target="_blank">Caminho do Filósofo</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 4.500</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 08/01/2027 (Osaka para Quioto)</strong><br>
-            <strong>Atividade:</strong> Viagem curta de trem e traslado direto para o <a href="https://www.hotelgrandbach.co.jp/kyoto/" target="_blank">Hotel Grand Bach Kyoto</a>[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem JR + Táxi da estação de Quioto ao hotel[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurante do <a href="https://www.hotelgrandbach.co.jp/kyoto/" target="_blank">Hotel Grand Bach Kyoto</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 4.780</span>[cite: 1, 2]`,
-        LOG: `<strong>🧭 Logística Detalhada - 08/01/2027 (Osaka para Quioto)</strong><br>
+        iconA: "🚄 Quioto", iconB: "🌸 Gion", iconC: "🏨 Grand Bach",
+        A: `<strong>Plano A - 08/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> JR Special Rapid para Quioto. Check-in no Hotel Grand Bach Kyoto Select. Noite: Gion[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 3.480</span>`,
+        B: `<strong>Plano B - 08/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Chegada a Quioto, check-in e Gion[cite: 3].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 3.480</span>`,
+        C: `<strong>Plano C - 08/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Shinkansen/Trem rápido e táxi em Quioto direto ao hotel[cite: 3].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 4.780</span>`,
+        LOG: `<strong>🧭 Logística Detalhada - 08/01/2027 (Quioto)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Estação JR Osaka[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação de Quioto[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Bilhete JR Special Rapid (ou uso direto do Cartão IC)[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de 10 min; tempo de percurso de 30 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Trem JR Special Rapid de Osaka até Quioto (30 min) + Táxi até o Hotel Grand Bach Kyoto Select[cite: 3, 4].</li>
+                <li><strong>VOLTA:</strong> Hospedagem em Quioto[cite: 3].</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 08/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.kyoto-teramachi.or.jp/" target="_blank">Teramachi & Shinkyogoku Arcade</a>:</strong> Ruas cobertas históricas com lojas de roupas e souvenirs em Quioto[cite: 1, 2].</li>
-            <li><strong><a href="https://www.biccamera.com/" target="_blank">Bic Camera Kyoto Station</a>:</strong> Excelente para eletrônicos e acessórios de viagem em frente à estação[cite: 1, 2].</li>
-            <li><strong><a href="https://www.gion-matsubaya.com/" target="_blank">Gion Matsubaya</a>:</strong> Culinária tradicional Kaiseki em ambiente histórico em Gion[cite: 1, 2].</li>
-            <li><strong><a href="https://www.cafecompany.co.jp/" target="_blank">WiRED CAFE Kyoto</a>:</strong> Café moderno com vista para a agitação da cidade[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Kyoto Station</a>:</strong> Perfeito para garantir o café da manhã rápido[cite: 1, 2].</li>
-            <li><strong><a href="https://www.mistore.jp/store/kyoto.html" target="_blank">Isetan Kyoto Department Store</a>:</strong> Shopping completo integrado à estação com moda e cosméticos de ponta[cite: 1, 2].</li>
-            <li><strong><a href="https://www.yodobashi.com/" target="_blank">Kyoto Yodobashi</a>:</strong> Megastore de eletrônicos e produtos variados perto da estação[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Gion Shijo</a>:</strong> Conveniência tradicional na entrada do bairro das gueixas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.starbucks.co.jp/" target="_blank">Starbucks Kyoto Sanjo Ohashi</a>:</strong> Unidade com plataforma tradicional sobre o rio Kamogawa[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Kyoto Station</a>:</strong> Lanches práticos para a chegada na antiga capital[cite: 1, 2].</li>
+            <li><strong>Teramachi Arcade:</strong> Ruas cobertas.</li>
+            <li><strong>Bic Camera Kyoto:</strong> Eletrônicos.</li>
+            <li><strong>Gion Matsubaya:</strong> Culinária tradicional.</li>
+            <li><strong>WiRED CAFE:</strong> Café moderno.</li>
+            <li><strong>7-Eleven Kyoto:</strong> Conveniência.</li>
+            <li><strong>Isetan Kyoto:</strong> Shopping na estação.</li>
+            <li><strong>Kyoto Yodobashi:</strong> Megastore.</li>
+            <li><strong>Lawson Gion:</strong> Bairro histórico.</li>
+            <li><strong>Starbucks Sanjo:</strong> Rio Kamogawa.</li>
+            <li><strong>FamilyMart Kyoto:</strong> Suporte.</li>
         </ol>`
     },
     "09/01": {
         city: "Quioto", hotel: "Grand Bach",
-        iconA: "⛩️ Fushimi Inari", iconB: "🌿 Nanzen-ji", iconC: "⚔️ Samurai Exp.",
-        A: `<strong>Plano A (Roteiro Original) - 09/01/2027 (Quioto)</strong><br>
-            <strong>Atividade:</strong> Fushimi Inari, <a href="https://www.kiyomizudera.or.jp/" target="_blank">Kiyomizu-dera</a> e Samurai Experience (<a href="https://www.kiyomizudera.or.jp/" target="_blank">Site Kiyomizu</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Saída às 06h45 para Fushimi Inari. Entrada do <a href="https://www.kiyomizudera.or.jp/" target="_blank">Kiyomizu-dera</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Casas de chá perto de Ninenzaka[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 32.100</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 09/01/2027 (Quioto)</strong><br>
-            <strong>Atividade:</strong> Templo <a href="https://nanzenji.or.jp/" target="_blank">Nanzen-ji</a> e Eikan-do (<a href="https://nanzenji.or.jp/" target="_blank">Site Nanzen-ji</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingressos no <a href="https://nanzenji.or.jp/" target="_blank">Nanzen-ji</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://nanzenji-yudofu.com/" target="_blank">Yudofu tradicional perto do templo</a> (<a href="https://nanzenji-yudofu.com/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 4.400</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 09/01/2027 (Quioto)</strong><br>
-            <strong>Atividade:</strong> Samurai Experience (atividade interna sentada)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Táxi ida e volta até o estúdio[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Jantar próximo ao hotel em Shijo[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 33.000</span>[cite: 1, 2]`,
+        iconA: "⛩️ Fushimi Inari", iconB: "🌸 Kiyomizu-dera", iconC: "⚔️ Samurai",
+        A: `<strong>Plano A - 09/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Fushimi Inari (3h). Tarde: Templo Kiyomizu-dera (2h). ¥ 400[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 32.100</span>`,
+        B: `<strong>Plano B - 09/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Fushimi Inari e Ninenzaka/Sannenzaka.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 4.400</span>`,
+        C: `<strong>Plano C - 09/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Samurai Experience e templos com táxi particular.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 33.000</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 09/01/2027 (Quioto)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Hotel Grand Bach Kyoto[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Fushimi Inari / Kiyomizu-dera[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (JR Nara Line) + Ônibus[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de 7 min; tempo de percurso de 15 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> JR Nara Line de Quioto até Fushimi Inari (5 min) + Ônibus para Kiyomizu-dera[cite: 4].</li>
+                <li><strong>VOLTA:</strong> Ônibus municipal de volta à região de Shijo (15 min).</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 09/01/2027</strong><br><ol>
-            <li><strong><a href="https://kyoto-avanti.com/" target="_blank">Kyoto Avanti Mall</a>:</strong> Shopping completo em frente à estação com lojas de fast fashion e casacos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.yojiya.co.jp/" target="_blank">Yojiya Kyoto</a>:</strong> Famosa marca tradicional de Quioto especializada em lencinhos absorventes e maquiagens[cite: 1, 2].</li>
-            <li><strong><a href="nanzenji-yudofu.com" target="_blank">Nanzenji Yudofu</a>:</strong> Pratos quentes de tofu artesanal, perfeito para dias frios[cite: 1, 2].</li>
-            <li><strong><a href="https://www.ippodo-tea.co.jp/" target="_blank">Ippodo Tea Kyoto Main Store</a>:</strong> A mais tradicional casa de chá verde matcha de Quioto[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Fushimi Inari</a>:</strong> Localizado estrategicamente na subida para o santuário[cite: 1, 2].</li>
-            <li><strong><a href="https://inari.jp/" target="_blank">Inari Chaya (Fushimi Inari)</a>:</strong> Pequenos restaurantes de macarrão Udon e Kitsune Udon tradicionais[cite: 1, 2].</li>
-            <li><strong><a href="https://www.fujiedacoffee.com/" target="_blank">Fujieda Coffee Fushimi</a>:</strong> Cafeteria artesanal charmosa perto das estações de trem[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Fushimi Inari Ekimae</a>:</strong> Parada prática para água antes de encarar os toriis[cite: 1, 2].</li>
-            <li><strong><a href="https://www.kyoto-craft.com/" target="_blank">Kyoto Craft Mart</a>:</strong> Lojas de artesanato em madeira e tecidos tradicionais locais[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Kyoto Avanti</a>:</strong> Conveniência prática integrada ao shopping da estação[cite: 1, 2].</li>
+            <li><strong>Kyoto Avanti:</strong> Shopping na estação.</li>
+            <li><strong>Yojiya Kyoto:</strong> Cosméticos tradicionais.</li>
+            <li><strong>Nanzenji Yudofu:</strong> Tofu quente.</li>
+            <li><strong>Ippodo Tea:</strong> Chá verde matcha.</li>
+            <li><strong>Lawson Fushimi:</strong> Trilha dos toriis.</li>
+            <li><strong>Inari Chaya:</strong> Udon tradicional.</li>
+            <li><strong>Fujieda Coffee:</strong> Cafeteria.</li>
+            <li><strong>7-Eleven Fushimi:</strong> Suporte.</li>
+            <li><strong>Kyoto Craft Mart:</strong> Artesanato.</li>
+            <li><strong>FamilyMart Avanti:</strong> Conveniência.</li>
         </ol>`
     },
     "10/01": {
         city: "Quioto", hotel: "Grand Bach",
-        iconA: "🎋 Arashiyama", iconB: "🍵 Chá Uji", iconC: "🚖 Táxi Uji",
-        A: `<strong>Plano A (Roteiro Original) - 10/01/2027 (Quioto / Uji)</strong><br>
-            <strong>Atividade:</strong> Arashiyama (manhã) e Templo Byodo-in em Uji (<a href="https://www.byodoin.or.jp/" target="_blank">Site Byodo-in</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem JR Sagano para Arashiyama (06h30) + JR Nara para Uji[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.kyoto-arashiyama-yoshimura.com/" target="_blank">Arashiyama Yoshimura</a> (<a href="https://www.kyoto-arashiyama-yoshimura.com/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 5.400</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 10/01/2027 (Quioto / Uji)</strong><br>
-            <strong>Atividade:</strong> Degustação profunda de chá e Templo Kosho-ji em Uji via <a href="https://www.tokichi.jp/" target="_blank">Nakamura Tokichi</a> (<a href="https://www.tokichi.jp/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Cerimônia de chá em Uji[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.tokichi.jp/" target="_blank">Nakamura Tokichi Honten</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 10.000</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 10/01/2027 (Quioto / Uji)</strong><br>
-            <strong>Atividade:</strong> Passeio de táxi particular ou ônibus turístico em Uji[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Contratação de táxi por horas em Uji[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Casas de chá tradicionais em Uji[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 17.400</span>[cite: 1, 2]`,
-        LOG: `<strong>🧭 Logística Detalhada - 10/01/2027 (Quioto / Uji)</strong><br>
+        iconA: "🎋 Arashiyama", iconB: "🪙 Kinkaku-ji", iconC: "🍵 Uji",
+        A: `<strong>Plano A - 10/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Sagano Line para Arashiyama (Floresta de Bambu). Tarde: Kinkaku-ji. ¥ 500[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 5.400</span>`,
+        B: `<strong>Plano B - 10/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Arashiyama e templos da região oeste.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 5.400</span>`,
+        C: `<strong>Plano C - 10/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Arashiyama e Kinkaku-ji com táxi particular.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 17.400</span>`,
+        LOG: `<strong>🧭 Logística Detalhada - 10/01/2027 (Quioto)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Estação de Quioto[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Arashiyama / Uji[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (JR Sagano Line e JR Nara Line)[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de 15 min; tempo de percurso de 20 a 30 min por trecho[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> JR Sagano Line de Quioto até Saga-Arashiyama (15 min) + Ônibus para Kinkaku-ji à tarde[cite: 4].</li>
+                <li><strong>VOLTA:</strong> Ônibus de Kinkaku-ji de volta ao hotel (25 min).</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 10/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.kyototourism.org/" target="_blank">Uji Bridge Shopping Street</a>:</strong> Lojas tradicionais de tecidos e roupas de algodão japonês[cite: 1, 2].</li>
-            <li><strong><a href="edion.com" target="_blank">EDION Kyoto Shijo Kawaramachi</a>:</strong> Loja moderna de eletrônicos no centro comercial[cite: 1, 2].</li>
-            <li><strong><a href="https://www.kyoto-arashiyama-yoshimura.com/" target="_blank">Arashiyama Yoshimura</a>:</strong> Soba artesanal com vista espetacular para o rio em Arashiyama[cite: 1, 2].</li>
-            <li><strong><a href="https://www.tokichi.jp/" target="_blank">Nakamura Tokichi Honten (Uji)</a>:</strong> O templo mundial do matcha servido com doces tradicionais[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Uji Station</a>:</strong> Parada rápida para água e snacks na cidade do chá[cite: 1, 2].</li>
-            <li><strong><a href="https://www.byodoin.or.jp/" target="_blank">Byodoin Omotesando Shops</a>:</strong> Ruazinha de comércio tradicional com cerâmicas e doces de matcha[cite: 1, 2].</li>
-            <li><strong><a href="https://store.starbucks.co.jp/" target="_blank">Starbucks Uji Byodoin Omotesando</a>:</strong> Unidade com design arquitetônico inspirado nas casas de chá japonesas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Uji Ekimae</a>:</strong> Conveniência de fácil acesso na estação de Uji[cite: 1, 2].</li>
-            <li><strong><a href="tsuen.jp" target="_blank">Tsuen Tea Uji</a>:</strong> A casa de chá mais antiga do Japão em funcionamento contínuo (desde 1160)[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Uji Station</a>:</strong> Lanches rápidos para os trajetos de trem[cite: 1, 2].</li>
+            <li><strong>Arashiyama Shops:</strong> Lojas de bambu e souvenirs.</li>
+            <li><strong>EDION Shijo:</strong> Eletrônicos.</li>
+            <li><strong>Arashiyama Yoshimura:</strong> Soba com vista para o rio.</li>
+            <li><strong>Nakamura Tokichi:</strong> Doces de matcha.</li>
+            <li><strong>FamilyMart Uji:</strong> Snacks.</li>
+            <li><strong>Byodoin Omotesando:</strong> Comércio tradicional.</li>
+            <li><strong>Starbucks Uji:</strong> Arquitetura de chá.</li>
+            <li><strong>7-Eleven Uji:</strong> Conveniência.</li>
+            <li><strong>Tsuen Tea Uji:</strong> Casa de chá centenária.</li>
+            <li><strong>Lawson Uji:</strong> Suporte.</li>
         </ol>`
     },
     "11/01": {
         city: "Quioto", hotel: "Grand Bach",
-        iconA: "🪙 Kinkaku-ji", iconB: "🏮 Pontocho", iconC: "🍣 Mercado Nishiki",
-        A: `<strong>Plano A (Roteiro Original) - 11/01/2027 (Quioto)</strong><br>
-            <strong>Atividade:</strong> Pavilhão Dourado (<a href="https://www.shokoku-ji.jp/kinkakuji/" target="_blank">Kinkaku-ji</a>) e Mercado Nishiki (<a href="https://www.kyoto-nishiki.or.jp/" target="_blank">Mercado Nishiki</a>) (<a href="https://www.shokoku-ji.jp/kinkakuji/" target="_blank">Site Kinkaku-ji</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ônibus municipal até o <a href="https://www.shokoku-ji.jp/kinkakuji/" target="_blank">Kinkaku-ji</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.kyoto-nishiki.or.jp/" target="_blank">Petiscos no Mercado Nishiki</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 11.600</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 11/01/2027 (Quioto)</strong><br>
-            <strong>Atividade:</strong> Distrito de Pontocho e Museus de Artesanato (<a href="kyoto.travel" target="_blank">Guia Pontocho</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> A pé e transporte local[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes à beira do rio em Pontocho[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 8.000</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 11/01/2027 (Quioto)</strong><br>
-            <strong>Atividade:</strong> Visita ao <a href="https://www.kyoto-nishiki.or.jp/" target="_blank">Mercado Nishiki</a> em horário de menor movimento[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Táxi até o mercado[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes sentados no Mercado Nishiki[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 12.500</span>[cite: 1, 2]`,
+        iconA: "🛍️ Kawaramachi", iconB: "🍣 Nishiki", iconC: "🏨 Hotel Spa",
+        A: `<strong>Plano A - 11/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Dia livre para exploração de templos menores ou compras em Kawaramachi[cite: 4].<br>
+            <span class="cost-tag">Custo: Variável</span>`,
+        B: `<strong>Plano B - 11/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Compras em Kawaramachi e Mercado Nishiki[cite: 4].<br>
+            <span class="cost-tag">Custo: Variável</span>`,
+        C: `<strong>Plano C - 11/01/2027 (Quioto)</strong><br>
+            <strong>Atividade:</strong> Dia livre com descanso e spa no Hotel Grand Bach.<br>
+            <span class="cost-tag">Custo: Variável</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 11/01/2027 (Quioto)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Hotel Grand Bach Kyoto[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Kinkaku-ji / Mercado Nishiki[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Passe Diário de Ônibus de Quioto (Kyoto City Bus Pass) ou Cartão IC[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Espera de 10 min no ponto; tempo de percurso de 35 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Caminhada curta ou metrô local até Kawaramachi (5-10 min).</li>
+                <li><strong>VOLTA:</strong> Retorno a pé ao Hotel Grand Bach Kyoto.</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 11/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.daimaru.co.jp/kyoto/" target="_blank">Kyoto Daimaru Department Store</a>:</strong> Loja de departamento de luxo com marcas renomadas de casacos e malhas[cite: 1, 2].</li>
-            <li><strong><a href="https://cosmekitchen.jp/" target="_blank">Cosme Kitchen Kyoto</a>:</strong> Cosméticos orgânicos e naturais de alta qualidade[cite: 1, 2].</li>
-            <li><strong><a href="kyoto.travel" target="_blank">Pontocho Alley Restaurants</a>:</strong> Beco histórico repleto de restaurantes intimistas à beira do canal[cite: 1, 2].</li>
-            <li><strong><a href="https://kurasu.kyoto/" target="_blank">Kurasu Kyoto Stand</a>:</strong> Cafeteria minimalista com grãos torrados localmente em Quioto[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Nishiki Market</a>:</strong> Próximo à entrada do famoso mercado coberto[cite: 1, 2].</li>
-            <li><strong><a href="https://www.kyoto-nishiki.or.jp/" target="_blank">Kyoto Nishiki Market Stalls</a>:</strong> Dezenas de lojinhas de comidinhas de rua tradicionais e frutos do mar[cite: 1, 2].</li>
-            <li><strong><a href="https://www.loft.co.jp/" target="_blank">Loft Kyoto Kawaramachi</a>:</strong> Loja de departamentos com itens de papelaria, beleza e presentes[cite: 1, 2].</li>
-            <li><strong><a href="https://www.matsukiyococokara-online.com/" target="_blank">Shinkyogoku Drug Store Matsumoto Kiyoshi</a>:</strong> Farmácia ideal para compras de maquiagem e skincare[cite: 1, 2].</li>
-            <li><strong><a href="https://www.inoda-coffee.co.jp/" target="_blank">Inoda Coffee Honten (Quioto)</a>:</strong> Cafeteria clássica histórica de Quioto com ambiente retrô elegante[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Shinkyogoku</a>:</strong> Conveniência prática no coração comercial de Quioto[cite: 1, 2].</li>
+            <li><strong>Daimaru Kyoto:</strong> Loja de luxo.</li>
+            <li><strong>Cosme Kitchen:</strong> Cosméticos orgânicos.</li>
+            <li><strong>Pontocho Alley:</strong> Beco gastronômico.</li>
+            <li><strong>Kurasu Kyoto:</strong> Café artesanal.</li>
+            <li><strong>7-Eleven Nishiki:</strong> Mercado coberto.</li>
+            <li><strong>Nishiki Market:</strong> Comidinhas de rua.</li>
+            <li><strong>Loft Kawaramachi:</strong> Papelaria e beleza.</li>
+            <li><strong>Matsumoto Kiyoshi:</strong> Farmácia.</li>
+            <li><strong>Inoda Coffee:</strong> Café retrô.</li>
+            <li><strong>FamilyMart Shinkyogoku:</strong> Conveniência.</li>
         </ol>`
     },
     "12/01": {
-        city: "Nagoia", hotel: "Hotel Nagoia",
-        iconA: "🐱 Ghibli Park", iconB: "🚗 Museu Toyota", iconC: "🛗 Ghibli Fácil",
-        A: `<strong>Plano A (Roteiro Original) - 12/01/2027 (Quioto para Nagoia)</strong><br>
-            <strong>Atividade:</strong> Shinkansen para Nagoia e <a href="https://ghibli-park.jp/" target="_blank">Ghibli Park</a> (<a href="https://ghibli-park.jp/" target="_blank">Site Oficial Ghibli</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Shinkansen + linha Linimo. Ingressos do <a href="https://ghibli-park.jp/" target="_blank">Ghibli Park</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes temáticos no Ghibli Park[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 49.200</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 12/01/2027 (Quioto para Nagoia)</strong><br>
-            <strong>Atividade:</strong> Shinkansen idêntico; Museu Toyota de Tecnologia (<a href="https://www.tcmit.org/" target="_blank">Museu Toyota</a>) (<a href="https://www.tcmit.org/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingressos no <a href="https://www.tcmit.org/" target="_blank">Museu Toyota</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurante industrial no museu[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 30.800</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 12/01/2027 (Quioto para Nagoia)</strong><br>
-            <strong>Atividade:</strong> Shinkansen e visita ao <a href="https://ghibli-park.jp/" target="_blank">Ghibli Park</a> com transportes internos[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Uso de elevadores e facilidades do parque[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Cafeterias internas do Ghibli Park[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 49.200</span>[cite: 1, 2]`,
-        LOG: `<strong>🧭 Logística Detalhada - 12/01/2027 (Quioto para Nagoia)</strong><br>
+        city: "Nagoia", hotel: "Hotel Actel",
+        iconA: "🚄 Nagoia", iconB: "🐱 Ghibli Park", iconC: "🏨 Actel Hotel",
+        A: `<strong>Plano A - 12/01/2027 (Nagoia)</strong><br>
+            <strong>Atividade:</strong> Shinkansen Tokaido para Nagoia. Tarde: Castelo de Nagoia (¥ 500). Check-in no Hotel Actel Nagoya Nishiki[cite: 3, 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 49.200</span>`,
+        B: `<strong>Plano B - 12/01/2027 (Nagoia)</strong><br>
+            <strong>Atividade:</strong> Shinkansen e Museu Toyota de Tecnologia.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 30.800</span>`,
+        C: `<strong>Plano C - 12/01/2027 (Nagoia)</strong><br>
+            <strong>Atividade:</strong> Shinkansen e Ghibli Park com acesso facilitado e táxi.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 52.000</span>`,
+        LOG: `<strong>🧭 Logística Detalhada - 12/01/2027 (Nagoia)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Estação de Quioto[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação de Nagoia / Ghibli Park[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Shinkansen Tokaido (SmartEX) + Cartão IC para a Linha Linimo (metrô local)[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Chegar 15 min antes na plataforma; 35 min de Shinkansen + 30 min de Linimo[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Shinkansen Tokaido de Quioto a Nagoia (35 min) + Metrô até o Hotel Actel Nagoya Nishiki[cite: 3, 4].</li>
+                <li><strong>VOLTA:</strong> Hospedagem em Nagoia[cite: 3].</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 12/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.jr-tgm.com/" target="_blank">JR Nagoya Takashimaya Gate Tower Mall</a>:</strong> Shopping gigante conectado à estação com Uniqlo e grandes marcas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.biccamera.com/" target="_blank">Bic Camera Nagoya Station West</a>:</strong> Um dos maiores estoques de eletrônicos e câmeras da região[cite: 1, 2].</li>
-            <li><strong><a href="https://ghibli-park.jp/" target="_blank">Daimateria / Ghibli Park Cafes</a>:</strong> Restaurantes temáticos inspirados nas obras do estúdio[cite: 1, 2].</li>
-            <li><strong><a href="https://www.komeda.co.jp/" target="_blank">Komeda’s Coffee Nagoya</a>:</strong> A rede de cafeterias mais tradicional de Nagoia (famosa pelo café da manhã com torradas)[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Nagoya Station</a>:</strong> Lanches rápidos antes de pegar o trem local para o parque[cite: 1, 2].</li>
-            <li><strong><a href="https://www.mitsukoshi.mistore.jp/nagoya.html" target="_blank">Nagoya Mitsukoshi Department Store</a>:</strong> Loja de departamentos com moda sofisticada e grifes[cite: 1, 2].</li>
-            <li><strong><a href="edion.com" target="_blank">Edion Nagoya Honten</a>:</strong> Megastore de eletrônicos de vários andares no centro de Nagoia[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Nagoya Station West</a>:</strong> Conveniência prática para o fluxo de trens bala[cite: 1, 2].</li>
-            <li><strong><a href="https://www.osu-nagoya.com/" target="_blank">Osu Shopping District Shops</a>:</strong> Ruas de comércio eletrônico, roupas vintage e cultura pop[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Sakae 3-chome</a>:</strong> Conveniência na principal zona comercial de Nagoia[cite: 1, 2].</li>
+            <li><strong>Takashimaya Gate Tower:</strong> Shopping na estação.</li>
+            <li><strong>Bic Camera Nagoia:</strong> Eletrônicos.</li>
+            <li><strong>Yabaton Misokatsu:</strong> Porco com missô.</li>
+            <li><strong>Komeda’s Coffee:</strong> Café tradicional.</li>
+            <li><strong>FamilyMart Nagoia:</strong> Conveniência.</li>
+            <li><strong>Mitsukoshi Nagoia:</strong> Moda e grifes.</li>
+            <li><strong>Edion Nagoia:</strong> Megastore.</li>
+            <li><strong>7-Eleven Nagoia:</strong> Suporte.</li>
+            <li><strong>Osu District:</strong> Eletrônicos e vintage.</li>
+            <li><strong>Lawson Sakae:</strong> Região central.</li>
         </ol>`
     },
     "13/01": {
-        city: "Tóquio", hotel: "Hotel em Tóquio",
-        iconA: "🔭 Museu Ciências", iconB: "⛩️ Atsuta-jingu", iconC: "🚄 Retorno Tóquio",
-        A: `<strong>Plano A (Roteiro Original) - 13/01/2027 (Nagoia para Tóquio)</strong><br>
-            <strong>Atividade:</strong> <a href="https://www.ncsm.city.nagoya.jp/" target="_blank">Museu de Ciências de Nagoia</a>; Shinkansen para Tóquio (<a href="https://www.ncsm.city.nagoya.jp/" target="_blank">Site Museu</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingressos do <a href="https://www.ncsm.city.nagoya.jp/" target="_blank">Museu de Ciências</a>. Shinkansen às 16h[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.misokatsu.co.jp/" target="_blank">Yabaton (Misokatsu)</a> na estação (<a href="https://www.misokatsu.co.jp/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 50.400</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 13/01/2027 (Nagoia para Tóquio)</strong><br>
-            <strong>Atividade:</strong> Templo <a href="https://www.atsutajingu.or.jp/" target="_blank">Atsuta-jingu</a> antes do retorno (<a href="https://www.atsutajingu.or.jp/" target="_blank">Site Atsuta</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Acesso gratuito ao <a href="https://www.atsutajingu.or.jp/" target="_blank">Atsuta-jingu</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.houraiken.com/" target="_blank">Atsuta Horaiken (Hitsumabushi)</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 47.200</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 13/01/2027 (Nagoia para Tóquio)</strong><br>
-            <strong>Atividade:</strong> Manhã cultural sentada no planetário e retorno a Tóquio[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Idêntico ao Plano A[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Cafeteria do <a href="https://www.ncsm.city.nagoya.jp/" target="_blank">Museu de Ciências</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 50.400</span>[cite: 1, 2]`,
-        LOG: `<strong>🧭 Logística Detalhada - 13/01/2027 (Nagoia para Tóquio)</strong><br>
+        city: "Tóquio", hotel: "WPÜ Shinjuku",
+        iconA: "🚄 Shinkansen", iconB: "🏮 Omoide Yokocho", iconC: "🏨 WPÜ Shinjuku",
+        A: `<strong>Plano A - 13/01/2027 (Nagoia p/ Tóquio)</strong><br>
+            <strong>Atividade:</strong> Shinkansen Tokaido para Tóquio/Shinjuku. Noite: Omoide Yokocho. Check-in no WPÜ Hotel Shinjuku[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 11.300</span>`,
+        B: `<strong>Plano B - 13/01/2027 (Nagoia p/ Tóquio)</strong><br>
+            <strong>Atividade:</strong> Shinkansen para Shinjuku e foco em eletrônicos[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 11.300</span>`,
+        C: `<strong>Plano C - 13/01/2027 (Nagoia p/ Tóquio)</strong><br>
+            <strong>Atividade:</strong> Shinkansen com assentos reservados e táxi direto ao hotel em Shinjuku[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 13.000</span>`,
+        LOG: `<strong>🧭 Logística Detalhada - 13/01/2027 (Nagoia p/ Tóquio)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Estação de Nagoia[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação de Tóquio ou Shinagawa[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Bilhete Shinkansen Tokaido (SmartEX) reservado com antecedência[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Chegar 20 min antes na plataforma; tempo de percurso de 1h40[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Shinkansen Tokaido de Nagoia até Tóquio (1h40) + Trem Yamanote/Chuo até Shinjuku e caminhada até o WPÜ Hotel Shinjuku[cite: 3, 4].</li>
+                <li><strong>VOLTA:</strong> Hospedagem em Shinjuku[cite: 3].</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 13/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.uniqlo.com/jp/ja/" target="_blank">Uniqlo Nagoya Sakae</a>:</strong> Grande variedade de peças térmicas antes de retornar a Tóquio[cite: 1, 2].</li>
-            <li><strong><a href="ainz-tulpe.jp" target="_blank">Ainz & Tulpe Nagoya Sakae</a>:</strong> Loja excelente de cosméticos coreanos e japoneses[cite: 1, 2].</li>
-            <li><strong><a href="https://www.misokatsu.co.jp/" target="_blank">Yabaton Nagoya Station</a>:</strong> Famoso lombo de porco empanado com molho especial de missô escuro[cite: 1, 2].</li>
-            <li><strong><a href="https://www.osu-nagoya.com/" target="_blank">Boutique Coffee Osu</a>:</strong> Café artesanal no histórico distrito de Osu[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Nagoya Station</a>:</strong> Bebidas quentes para a viagem de Shinkansen[cite: 1, 2].</li>
-            <li><strong><a href="https://www.towers.jp/" target="_blank">JR Central Towers Plaza</a>:</strong> Centro de compras e gastronomia no topo da estação de Nagoia[cite: 1, 2].</li>
-            <li><strong><a href="https://www.e-meitetsu.com/" target="_blank">Meitetsu Department Store</a>:</strong> Tradicional shopping de Nagoia com roupas e confeitarias locais[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Meieki Minami</a>:</strong> Conveniência prática perto das plataformas de trem[cite: 1, 2].</li>
-            <li><strong><a href="https://store.starbucks.co.jp/" target="_blank">Starbucks JR Gate Tower</a>:</strong> Café com vista panorâmica da estação de Nagoia[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Nagoya Ekimae</a>:</strong> Snacks rápidos para a viagem de volta à capital[cite: 1, 2].</li>
+            <li><strong>Yodobashi Shinjuku:</strong> Eletrônicos.</li>
+            <li><strong>Omoide Yokocho:</strong> Izakayas tradicionais.</li>
+            <li><strong>Isetan Shinjuku:</strong> Departamento.</li>
+            <li><strong>Lumine Shinjuku:</strong> Moda jovem.</li>
+            <li><strong>7-Eleven Shinjuku:</strong> Conveniência.</li>
+            <li><strong>Bic Camera West:</strong> Câmeras.</li>
+            <li><strong>Tokyu Hands:</strong> Utilidades.</li>
+            <li><strong>FamilyMart Sanchome:</strong> Lanches.</li>
+            <li><strong>Starbucks Shinjuku:</strong> Café.</li>
+            <li><strong>Lawson West:</strong> Suporte.</li>
         </ol>`
     },
     "14/01": {
-        city: "Tóquio", hotel: "Hotel em Tóquio",
-        iconA: "🏰 Disney Resort", iconB: "🔌 Akihabara", iconC: "☕ Ginza Cafés",
-        A: `<strong>Plano A (Roteiro Original) - 14/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> <a href="https://www.tokyodisneyresort.jp/" target="_blank">Tokyo Disney Resort (Land ou Sea)</a> (<a href="https://www.tokyodisneyresort.jp/" target="_blank">Site Oficial</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Saída de Shinjuku às 07h30 rumo a Maihama via <a href="https://www.tokyodisneyresort.jp/" target="_blank">Tokyo Disney</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes temáticos na Disney[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 40.400</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 14/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Akihabara e <a href="https://www.kandamyoujin.or.jp/" target="_blank">Kanda Myojin</a> (<a href="https://www.kandamyoujin.or.jp/" target="_blank">Site Kanda</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Metrô até Akihabara + <a href="https://www.kandamyoujin.or.jp/" target="_blank">Kanda Myojin</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.curry-camp.com/" target="_blank">Camp Curry Akihabara</a> (<a href="https://www.curry-camp.com/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 10.000</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 14/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Compras em Ginza (<a href="https://www.ginza.jp/" target="_blank">Ginza</a>) com pausas em cafeterias tradicionais[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Metrô até <a href="https://www.ginza.jp/" target="_blank">Ginza</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.cafe-paulista.co.jp/" target="_blank">Café Paulista em Ginza</a> (<a href="https://www.cafe-paulista.co.jp/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 14.000</span>[cite: 1, 2]`,
+        city: "Tóquio", hotel: "WPÜ Shinjuku",
+        iconA: "🌸 Harajuku", iconB: "🏙️ Shibuya", iconC: "☕ Omotesando",
+        A: `<strong>Plano A - 14/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Yamanote Line para Harajuku e Shibuya Crossing[cite: 4].<br>
+            <span class="cost-tag">Custo: Gratuito</span>`,
+        B: `<strong>Plano B - 14/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Harajuku, Omotesando e Shibuya[cite: 4].<br>
+            <span class="cost-tag">Custo: Gratuito</span>`,
+        C: `<strong>Plano C - 14/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Harajuku e Shibuya com táxi privativo.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 5.000</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 14/01/2027 (Tóquio)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Estação Shinjuku / Hotel em Tóquio[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Maihama (Disney Resort) ou Akihabara[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (JR Chuo Line até Tóquio + JR Keiyo Line)[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de 5 min; tempo de percurso de 35 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Yamanote Line de Shinjuku até Harajuku (5 min).</li>
+                <li><strong>VOLTA:</strong> Yamanote Line de Shibuya de volta a Shinjuku (7 min).</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 14/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.yodobashi.com/" target="_blank">Yodobashi Camera Multimedia Akiba</a>:</strong> O paraíso mundial dos eletrônicos, robótica e games de 9 andares[cite: 1, 2].</li>
-            <li><strong><a href="https://www.tokyodisneyresort.jp/" target="_blank">Bon Voyage (Disney Store Externa)</a>:</strong> Loja gigante em formato de mala com acessórios e casacos Disney[cite: 1, 2].</li>
-            <li><strong><a href="https://www.curry-camp.com/" target="_blank">Camp Curry Akihabara</a>:</strong> Delicioso curry japonês servido em panelas de acampamento[cite: 1, 2].</li>
-            <li><strong><a href="https://www.gundam.info/" target="_blank">Gundam Cafe / Pop Culture Shops</a>:</strong> Experiências temáticas únicas na cultura pop de Akihabara[cite: 1, 2].</li>
-            <li><strong><a href="https://www.akibaoo.co.jp/" target="_blank">Akiba Cultures Zone</a>:</strong> Variedade enorme de produtos de beleza, eletrônicos e colecionáveis[cite: 1, 2].</li>
-            <li><strong><a href="https://www.ikspiari.com/" target="_blank">Ikspiari Shopping Mall (Disney)</a>:</strong> Complexo de compras completo com moda, restaurantes e cinema na entrada da Disney[cite: 1, 2].</li>
-            <li><strong><a href="https://www.biccamera.com/" target="_blank">Bic Camera Akiba</a>:</strong> Excelente opção para eletrônicos portáteis e câmeras de última geração[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Akihabara Station</a>:</strong> Conveniência prática no centro da tecnologia[cite: 1, 2].</li>
-            <li><strong><a href="https://www.ecute.jp/maach" target="_blank">Maach Ecute Kanda Manseibashi</a>:</strong> Espaço estiloso de cafés e lojas de design sob os arcos de antigas ferrovias[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Soto-Kanda</a>:</strong> Conveniência temática em Akihabara[cite: 1, 2].</li>
+            <li><strong>Uniqlo Harajuku:</strong> Moda urbana.</li>
+            <li><strong>Atcosme Tokyo:</strong> Cosméticos.</li>
+            <li><strong>Shibuya Sky:</strong> Observatório.</li>
+            <li><strong>Bic Camera Shibuya:</strong> Eletrônicos.</li>
+            <li><strong>Ichiran Shibuya:</strong> Ramen.</li>
+            <li><strong>Takeshita Street:</strong> Moda jovem.</li>
+            <li><strong>Tokyu Plaza:</strong> Terraço.</li>
+            <li><strong>Shibuya Loft:</strong> Beleza e presentes.</li>
+            <li><strong>Starbucks Reserve:</strong> Café de luxo.</li>
+            <li><strong>7-Eleven Shibuya:</strong> Conveniência.</li>
         </ol>`
     },
     "15/01": {
-        city: "Tóquio", hotel: "Hotel em Tóquio",
-        iconA: "🌳 Museu Ghibli", iconB: "🎨 teamLab Mori", iconC: "🦆 Inokashira",
-        A: `<strong>Plano A (Roteiro Original) - 15/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> <a href="https://www.ghibli-museum.jp/" target="_blank">Museu Ghibli (Mitaka)</a> e Kichijoji (<a href="https://www.ghibli-museum.jp/" target="_blank">Site Ghibli</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Linha JR Chuo até Mitaka. Bilhete do <a href="https://www.ghibli-museum.jp/" target="_blank">Museu Ghibli</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Straw Hat Cafe no Museu Ghibli[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 5.200</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 15/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Museu de Arte Digital Mori via <a href="https://www.teamlab.art/" target="_blank">teamLab</a> (<a href="https://www.teamlab.art/" target="_blank">Site Oficial</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingressos online para o <a href="https://www.teamlab.art/" target="_blank">teamLab</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes em Roppongi Hills[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 16.800</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 15/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Contemplação rápida do Parque Inokashira e almoço em Kichijoji[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem JR Chuo até Kichijoji[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Bistrôs ao redor do Parque Inokashira[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 11.200</span>[cite: 1, 2]`,
+        city: "Tóquio", hotel: "WPÜ Shinjuku",
+        iconA: "🌳 Ghibli", iconB: "🛍️ Ginza", iconC: "☕ Kichijoji",
+        A: `<strong>Plano A - 15/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Manhã: Museu Ghibli (3h, ¥ 1.000) via JR Chuo Line. Tarde: Compras em Ginza (Distrito de luxo, 3h)[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 5.200</span>`,
+        B: `<strong>Plano B - 15/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Museu Ghibli e Ginza[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 5.200</span>`,
+        C: `<strong>Plano C - 15/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Museu Ghibli e Ginza com táxi particular.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 15.000</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 15/01/2027 (Tóquio)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Estação Shinjuku[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Mitaka / Kichijoji[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (JR Chuo Line Rapid Service) + Ingresso antecipado obrigatório[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de 5 min; tempo de percurso de 20 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> JR Chuo Line de Shinjuku até Mitaka (20 min) para o Ghibli. Depois, Metrô Marunouchi até Ginza[cite: 4].</li>
+                <li><strong>VOLTA:</strong> Metrô Marunouchi de Ginza direto a Shinjuku (20 min).</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 15/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.atre.co.jp/kichijoji/" target="_blank">Atré Kichijoji Shopping Mall</a>:</strong> Shopping moderno integrado à estação com ótimas marcas de malhas e roupas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.yodobashi.com/" target="_blank">Yodobashi Camera Kichijoji</a>:</strong> Excelente opção fora do eixo central para eletrônicos tranquilos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.kichijoji-harmonica.com/" target="_blank">Harmonica Yokocho (Kichijoji)</a>:</strong> Beco tradicional com dezenas de pequenos izakayas e restaurantes aconchegantes[cite: 1, 2].</li>
-            <li><strong><a href="https://www.ghibli-museum.jp/" target="_blank">Straw Hat Cafe (Museu Ghibli)</a>:</strong> Café oficial dentro do museu com cardápio artesanal[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Kichijoji Park</a>:</strong> Próximo ao Parque Inokashira[cite: 1, 2].</li>
-            <li><strong><a href="https://www.tokyu-dept.co.jp/kichijoji/" target="_blank">Tokyu Department Store Kichijoji</a>:</strong> Loja de departamentos completa com moda, cosméticos e gastronomia[cite: 1, 2].</li>
-            <li><strong><a href="https://www.loft.co.jp/" target="_blank">Kichijoji Loft</a>:</strong> Loja de utilidades, maquiagem e papelaria de design criativo[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Kichijoji Minami</a>:</strong> Conveniência prática perto do parque[cite: 1, 2].</li>
-            <li><strong><a href="https://www.capcom.co.jp/" target="_blank">Capcom Cafe / Character Shops Kichijoji</a>:</strong> Lojas temáticas de cultura pop e games[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Kichijoji Ekimae</a>:</strong> Snacks rápidos para o passeio no parque[cite: 1, 2].</li>
+            <li><strong>Straw Hat Cafe:</strong> Museu Ghibli.</li>
+            <li><strong>Ginza Six:</strong> Luxo.</li>
+            <li><strong>Ginza Loft:</strong> Beleza.</li>
+            <li><strong>Café Paulista:</strong> Café histórico.</li>
+            <li><strong>Uniqlo Ginza:</strong> Flagship store.</li>
+            <li><strong>Mitsukoshi Ginza:</strong> Depachika.</li>
+            <li><strong>Wako Dept Store:</strong> Relógios e luxo.</li>
+            <li><strong>7-Eleven Ginza:</strong> Conveniência.</li>
+            <li><strong>Lawson Ginza:</strong> Suporte.</li>
+            <li><strong>Starbucks Ginza:</strong> Café.</li>
         </ol>`
     },
     "16/01": {
-        city: "Tóquio", hotel: "Hotel em Tóquio",
-        iconA: "🗻 Monte Fuji", iconB: "🌊 Kamakura", iconC: "🏨 Shinjuku Relax",
-        A: `<strong>Plano A (Roteiro Original) - 16/01/2027 (Excursão Monte Fuji)</strong><br>
-            <strong>Atividade:</strong> Excursão ao Monte Fuji (Kawaguchiko) via <a href="https://highway-buses.jp/" target="_blank">Highwaybus.com</a> (<a href="https://highway-buses.jp/" target="_blank">Site Oficial</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ônibus no <a href="https://highway-buses.jp/" target="_blank">Highwaybus.com</a> (06h30 de Shinjuku)[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes com vista para o Lago Kawaguchiko[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 20.000</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 16/01/2027 (Kamakura)</strong><br>
-            <strong>Atividade:</strong> Enoshima e Kamakura (litoral e templos) via <a href="https://www.trip-kamakura.com/" target="_blank">Kamakura Guide</a> (<a href="https://www.trip-kamakura.com/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem Odakyu a partir de Shinjuku rumo a <a href="https://www.trip-kamakura.com/" target="_blank">Kamakura</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Frutos do mar à beira-mar em Enoshima[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 8.000</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 16/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Descanso no hotel ou passeio leve por Shinjuku[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Caminhada leve e compras em Shinjuku[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes em Shinjuku Sanchome[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 8.000</span>[cite: 1, 2]`,
-        LOG: `<strong>🧭 Logística Detalhada - 16/01/2027 (Monte Fuji / Kawaguchiko)</strong><br>
+        city: "Tóquio", hotel: "WPÜ Shinjuku",
+        iconA: "🌊 Yokohama", iconB: "🎡 Minato Mirai", iconC: "🏨 Shinjuku",
+        A: `<strong>Plano A - 16/01/2027 (Yokohama)</strong><br>
+            <strong>Atividade:</strong> Bate-e-volta para Yokohama (Minato Mirai, Chinatown) via JR Shonan-Shinjuku Line[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 4.800</span>`,
+        B: `<strong>Plano B - 16/01/2027 (Yokohama)</strong><br>
+            <strong>Atividade:</strong> Yokohama Landmark Tower e Chinatown[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 4.800</span>`,
+        C: `<strong>Plano C - 16/01/2027 (Yokohama)</strong><br>
+            <strong>Atividade:</strong> Yokohama com transporte privativo.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 15.000</span>`,
+        LOG: `<strong>🧭 Logística Detalhada - 16/01/2027 (Yokohama)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Shinjuku Expressway Bus Terminal (Busta Shinjuku)[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Kawaguchiko[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Bilhete de Ônibus Expresso (Highwaybus.com reservado com antecedência)[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Chegar 15 min antes do embarque; tempo de percurso de 1h50 a 2h00[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> JR Shonan-Shinjuku Line direto de Shinjuku até Yokohama (30 min)[cite: 4].</li>
+                <li><strong>VOLTA:</strong> JR Shonan-Shinjuku Line de Yokohama de volta a Shinjuku (30 min)[cite: 4].</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 16/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.victoria.co.jp/l-breath/" target="_blank">L-Breath Shinjuku (Artigos de Inverno)</a>:</strong> A maior loja de roupas de frio extremo, corta-ventos e acessórios para neve[cite: 1, 2].</li>
-            <li><strong><a href="https://www.biccamera.com/" target="_blank">Bic Camera Shinjuku West</a>:</strong> Perfeito para baterias portáteis de alta capacidade para o frio intenso do Fuji[cite: 1, 2].</li>
-            <li><strong><a href="https://www.houtou-fudo.jp/" target="_blank">Hoto Fudo Kawaguchiko</a>:</strong> Famoso restaurante regional especializado no aconchegante macarrão quente Hoto[cite: 1, 2].</li>
-            <li><strong><a href="https://www.fujikawaguchiko.net/" target="_blank">Lake Kawaguchi View Cafe</a>:</strong> Cafeteria com poltronas voltadas diretamente para a contemplação do Monte Fuji[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Kawaguchiko Station</a>:</strong> Garantia de bebidas quentes para a região fria dos lagos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.trip-kamakura.com/" target="_blank">Kamakura Komachi-dori Shops</a>:</strong> Ruazinha de comércio tradicional com roupas artesanais e doces locais[cite: 1, 2].</li>
-            <li><strong><a href="https://www.trip-kamakura.com/" target="_blank">Grand Line Cafe Enoshima</a>:</strong> Cafeteria com vista panorâmica para o mar em Kamakura[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Kawaguchiko Ekimae</a>:</strong> Famosa conveniência com vista panorâmica do Fuji ao fundo[cite: 1, 2].</li>
-            <li><strong><a href="https://www.subnade.co.jp/" target="_blank">Shinjuku Subnade Underground Mall</a>:</strong> Galeria comercial subterrânea gigante em Shinjuku com lojas de roupas e acessórios[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Shinjuku West</a>:</strong> Parada prática antes de pegar o ônibus expresso[cite: 1, 2].</li>
+            <li><strong>Landmark Tower:</strong> Mirante e compras.</li>
+            <li><strong>Yokohama Chinatown:</strong> Gastronomia chinesa.</li>
+            <li><strong>Cup Noodles Museum:</strong> Museu interativo.</li>
+            <li><strong>Red Brick Warehouse:</strong> Lojas e eventos.</li>
+            <li><strong>Cosmo World:</strong> Parque de diversões.</li>
+            <li><strong>Queen's Square:</strong> Shopping.</li>
+            <li><strong>Yodobashi Yokohama:</strong> Eletrônicos.</li>
+            <li><strong>7-Eleven Yokohama:</strong> Conveniência.</li>
+            <li><strong>Starbucks Bay:</strong> Vista para o mar.</li>
+            <li><strong>FamilyMart Yokohama:</strong> Suporte.</li>
         </ol>`
     },
     "17/01": {
-        city: "Tóquio", hotel: "Hotel em Tóquio",
-        iconA: "🐟 Tsukiji & teamLab", iconB: "📚 Daikanyama", iconC: "🌊 Toyosu Planets",
-        A: `<strong>Plano A (Roteiro Original) - 17/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Mercado de Tsukiji e <a href="https://planets.teamlab.art/tokyo/" target="_blank">teamLab Planets (Odaiba)</a> (<a href="https://planets.teamlab.art/tokyo/" target="_blank">Site teamLab</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Monotrilho Yurikamome até Toyosu. Ingressos do <a href="https://planets.teamlab.art/tokyo/" target="_blank">teamLab</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Sushi fresco no Mercado de Tsukiji[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 25.700</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 17/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Bairro de Daikanyama (<a href="https://daikanyama-t-site.jp/" target="_blank">T-Site</a>) (<a href="https://daikanyama-t-site.jp/" target="_blank">Site Oficial</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem Toyoko Line até <a href="https://daikanyama-t-site.jp/" target="_blank">Daikanyama</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Ivy Place (Daikanyama T-Site)[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 7.200</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 17/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Experiência imersiva e sensorial no <a href="https://planets.teamlab.art/tokyo/" target="_blank">teamLab Planets</a>[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Táxi ida e volta para evitar trocas de metrô[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Cafeterias e praça de alimentação em Toyosu[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 21.200</span>[cite: 1, 2]`,
+        city: "Tóquio", hotel: "WPÜ Shinjuku",
+        iconA: "🛍️ Shinjuku Livre", iconB: "☕ Cafés", iconC: "🏨 Descanso",
+        A: `<strong>Plano A - 17/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Dia livre em Shinjuku para descanso e compras de última hora[cite: 4].<br>
+            <span class="cost-tag">Custo: Variável</span>`,
+        B: `<strong>Plano B - 17/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Shinjuku e arredores[cite: 4].<br>
+            <span class="cost-tag">Custo: Variável</span>`,
+        C: `<strong>Plano C - 17/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Dia livre com spa e relaxamento em Shinjuku.<br>
+            <span class="cost-tag">Custo: Variável</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 17/01/2027 (Tóquio)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Hotel em Shinjuku[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Toyosu / teamLab Planets (Odaiba)[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (Metrô + Monotrilho Yurikamome)[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de 6 min; tempo de percurso de 35 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Caminhada a partir do WPÜ Hotel Shinjuku.</li>
+                <li><strong>VOLTA:</strong> Retorno a pé ao hotel.</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 17/01/2027</strong><br><ol>
-            <li><strong><a href="https://senkyakubanrai.tokyo/" target="_blank">Toyosu Senkyaku Banrai</a>:</strong> Complexo comercial ao lado do teamLab com lojas tradicionais de vestuário e fontes termais[cite: 1, 2].</li>
-            <li><strong><a href="https://www.yamada-denki.jp/" target="_blank">Yamada Denki Labi Ginza</a>:</strong> Próximo à região de Toyosu e Ginza para eletrônicos em geral[cite: 1, 2].</li>
-            <li><strong><a href="https://www.tsukiji.or.jp/" target="_blank">Tsukiji Outer Market Sushi Stalls</a>:</strong> Dezenas de restaurantes especializados em sushi fresco matinal[cite: 1, 2].</li>
-            <li><strong><a href="https://planetarium.konicaminolta.jp/" target="_blank">Planetarium Cafe (Toyosu)</a>:</strong> Café temático imersivo de luzes e sons[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Toyosu Market</a>:</strong> Lanches rápidos antes da imersão digital[cite: 1, 2].</li>
-            <li><strong><a href="https://mitsui-shopping-park.com/lalalaport/toyosu/" target="_blank">LaLaport Toyosu Shopping Mall</a>:</strong> Shopping à beira-mar com marcas de roupas, moda casual e restaurantes[cite: 1, 2].</li>
-            <li><strong><a href="https://www.loft.co.jp/" target="_blank">Loft Toyosu</a>:</strong> Loja de cosméticos, maquiagem e presentes criativos no shopping de Toyosu[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Toyosu 3-chome</a>:</strong> Conveniência prática na região moderna de Toyosu[cite: 1, 2].</li>
-            <li><strong><a href="https://www.tsukiji.or.jp/" target="_blank">Tsukiji Uogashi Building Shops</a>:</strong> Lojas de utensílios de cozinha profissionais e ingredientes japoneses[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Toyosu Front</a>:</strong> Snacks rápidos para o percurso do monotrilho[cite: 1, 2].</li>
+            <li><strong>Isetan Shinjuku:</strong> Departamento.</li>
+            <li><strong>Yodobashi West:</strong> Eletrônicos.</li>
+            <li><strong>Lumine Shinjuku:</strong> Moda.</li>
+            <li><strong>Tokyu Hands:</strong> Utilidades.</li>
+            <li><strong>Cafe Aaliya:</strong> Rabanadas.</li>
+            <li><strong>Shinjuku Subnade:</strong> Galerias subterrâneas.</li>
+            <li><strong>7-Eleven South:</strong> Conveniência.</li>
+            <li><strong>FamilyMart Sanchome:</strong> Lanches.</li>
+            <li><strong>Starbucks Shinjuku:</strong> Café.</li>
+            <li><strong>Lawson West:</strong> Suporte.</li>
         </ol>`
     },
     "18/01": {
-        city: "Tóquio", hotel: "Hotel em Tóquio",
-        iconA: "🌿 Shinjuku Gyoen", iconB: "🌸 Korakuen", iconC: "🏙️ Gov. Metropolitano",
-        A: `<strong>Plano A (Roteiro Original) - 18/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> <a href="https://fng.or.jp/shinjuku/" target="_blank">Shinjuku Gyoen</a> e Governo Metropolitano (<a href="https://fng.or.jp/shinjuku/" target="_blank">Site Shinjuku Gyoen</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> A pé do hotel. Ingresso do <a href="https://fng.or.jp/shinjuku/" target="_blank">Shinjuku Gyoen</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes no Governo Metropolitano[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 6.000</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 18/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Jardim <a href="https://www.tokyo-park.or.jp/park/koishikawa-korakuen/" target="_blank">Koishikawa Korakuen</a> (<a href="https://www.tokyo-park.or.jp/park/koishikawa-korakuen/" target="_blank">Site</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Ingresso no <a href="https://www.tokyo-park.or.jp/park/koishikawa-korakuen/" target="_blank">Korakuen</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes ao redor do Korakuen[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 2.400</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 18/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Subida ao Governo Metropolitano para vista panorâmica[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> A pé do hotel até a torre (gratuito)[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Cafés em Shinjuku West Exit[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 0</span>[cite: 1, 2]`,
+        city: "Tóquio", hotel: "WPÜ Shinjuku",
+        iconA: "🌿 Shinjuku Gyoen", iconB: "🏯 Palácio Imperial", iconC: "🏙️ Panorâmico",
+        A: `<strong>Plano A - 18/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Manhã: Shinjuku Gyoen (2h, ¥ 500). Tarde: Jardins Orientais do Palácio Imperial (3h, Grátis)[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 2.000</span>`,
+        B: `<strong>Plano B - 18/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Shinjuku Gyoen e Palácio Imperial[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 2.000</span>`,
+        C: `<strong>Plano C - 18/01/2027 (Tóquio)</strong><br>
+            <strong>Atividade:</strong> Jardins imperiais com táxi particular.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 8.000</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 18/01/2027 (Tóquio)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Hotel em Shinjuku[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Shinjuku Gyoen / Torre do Governo Metropolitano[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Deslocamento a pé (sem custo de transporte público)[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Caminhada de 10 a 15 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Caminhada até Shinjuku Gyoen (10 min) + Metrô Marunouchi até Otemachi para o Palácio Imperial (15 min)[cite: 4].</li>
+                <li><strong>VOLTA:</strong> Metrô Marunouchi de volta a Shinjuku (15 min).</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 18/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.mistore.jp/store/shinjuku.html" target="_blank">Isetan Shinjuku Department Store</a>:</strong> A loja de departamentos mais prestigiada de Tóquio com grifes internacionais e locais[cite: 1, 2].</li>
-            <li><strong><a href="https://www.mistore.jp/" target="_blank">Isetan Beauty Floor Shinjuku</a>:</strong> Andar inteiro dedicado às maiores marcas globais e asiáticas de maquiagem[cite: 1, 2].</li>
-            <li><strong><a href="https://www.yokoso.metro.tokyo.jp/" target="_blank">Tokyo Metropolitan Gov. Building Canteen</a>:</strong> Restaurante panorâmico no topo do governo com preços acessíveis[cite: 1, 2].</li>
-            <li><strong><a href="https://www.instagram.com/cafe_aaliya/" target="_blank">Cafe Aaliya Shinjuku</a>:</strong> Famoso por servir as fatias de rabanada (French Toast) mais macias de Tóquio[cite: 1, 2].</li>
-            <li><strong><a href="https://www.yodobashi.com/" target="_blank">Yodobashi Camera Shinjuku West</a>:</strong> O império dos eletrônicos espalhados por vários prédios em Shinjuku[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lumine.ne.jp/shinjuku/" target="_blank">Lumine Shinjuku Shopping Mall</a>:</strong> Shopping favorito dos jovens para roupas de marcas modernas e cosméticos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.takashimaya.co.jp/shinjuku/" target="_blank">Shinjuku Takashimaya Times Square</a>:</strong> Complexo de compras gigantesco com livraria Kinokuniya e moda de alta qualidade[cite: 1, 2].</li>
-            <li><strong><a href="https://www.hands.net/" target="_blank">Tokyu Hands Shinjuku</a>:</strong> Utilidades, maquiagem, produtos de viagem e papelaria[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Shinjuku Station South</a>:</strong> Conveniência ideal para o fluxo intenso da estação[cite: 1, 2].</li>
-            <li><strong><a href="https://www.family.co.jp/" target="_blank">FamilyMart Shinjuku Sanchome</a>:</strong> Parada prática no miolo de compras e restaurantes de Shinjuku[cite: 1, 2].</li>
+            <li><strong>Shinjuku Gyoen Shops:</strong> Souvenirs do parque.</li>
+            <li><strong>Imperial Palace East:</strong> Jardins.</li>
+            <li><strong>Cafe Aaliya:</strong> Rabanada.</li>
+            <li><strong>Isetan Shinjuku:</strong> Loja de departamentos.</li>
+            <li><strong>7-Eleven Otemachi:</strong> Conveniência.</li>
+            <li><strong>Yodobashi Shinjuku:</strong> Eletrônicos.</li>
+            <li><strong>Loft Shinjuku:</strong> Beleza.</li>
+            <li><strong>FamilyMart Gyoen:</strong> Suporte.</li>
+            <li><strong>Starbucks Otemachi:</strong> Café.</li>
+            <li><strong>Lawson Shinjuku:</strong> Snacks.</li>
         </ol>`
     },
     "19/01": {
-        city: "Tóquio", hotel: "Hotel em Tóquio",
-        iconA: "🏯 Palácio Imperial", iconB: "🌲 Vale Todoroki", iconC: "🛍️ Ginza Premium",
-        A: `<strong>Plano A (Roteiro Original) - 19/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Jardins Orientais do <a href="https://sankan.kunaicho.go.jp/" target="_blank">Palácio Imperial</a> e Ginza (<a href="https://sankan.kunaicho.go.jp/" target="_blank">Site Palácio</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Metrô até Otemachi. Jardins do <a href="https://sankan.kunaicho.go.jp/" target="_blank">Palácio Imperial</a>[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> <a href="https://www.cafe-paulista.co.jp/" target="_blank">Café Paulista</a> ou restaurantes em Ginza[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 11.600</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 19/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Vale de Todoroki (<a href="https://www.trip-kamakura.com/" target="_blank">Guia Todoroki</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Trem Tokyu Oimachi Line até Todoroki[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Casas de chá tradicionais em Todoroki[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 6.600</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 19/01/2027 (Tóquio)</strong><br>
-            <strong>Atividade:</strong> Visita sossegada aos Jardins Orientais do <a href="https://sankan.kunaicho.go.jp/" target="_blank">Palácio Imperial</a>[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Táxi até o palácio[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Cafeterias calmas próximas a Otemachi[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 2.500</span>[cite: 1, 2]`,
-        LOG: `<strong>🧭 Logística Detalhada - 19/01/2027 (Tóquio)</strong><br>
+        city: "Nagano", hotel: "WPÜ Shinjuku",
+        iconA: "🐵 Nagano & Neve", iconB: "⛩️ Zenko-ji", iconC: "🍲 Shinshu Soba",
+        A: `<strong>Plano A (Especial Nagano) - 19/01/2027 (Nagano)</strong><br>
+            <strong>Atividade:</strong> 07:30 Saída de Ueno via Shinkansen Hokuriku. 09:30 Chegada em Nagano. Manhã: Templo Zenko-ji (2h) + Experiência do túnel escuro. Almoço: Shinshu Soba tradicional (¥ 1.800). Tarde: Jigokudani Monkey Park (Macacos da Neve - requer calçado técnico na neve). 18:30 Retorno via Shinkansen para Tóquio[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 18.000</span>`,
+        B: `<strong>Plano B (Especial Nagano) - 19/01/2027 (Nagano)</strong><br>
+            <strong>Atividade:</strong> Templo Zenko-ji e Castelo de Matsumoto (alternativa ao parque de neve)[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 15.000</span>`,
+        C: `<strong>Plano C (Especial Nagano) - 19/01/2027 (Nagano)</strong><br>
+            <strong>Atividade:</strong> Nagano com excursão privativa guiada.<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 35.000</span>`,
+        LOG: `<strong>🧭 Logística Detalhada - 19/01/2027 (Nagano)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Hotel em Shinjuku[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Estação Otemachi (Palácio Imperial) / Ginza[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Cartão IC (Metrô Linha Marunouchi)[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Frequência de 3 min; tempo de percurso de 15 min[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Saída do hotel às 06:45 + Metrô até Ueno + Shinkansen Hokuriku às 07:30 rumo a Nagano (90 min) + Ônibus local até a trilha do Jigokudani Monkey Park (30 min de caminhada na neve)[cite: 4].</li>
+                <li><strong>VOLTA:</strong> Ônibus de retorno + Shinkansen Hokuriku de Nagano até Tóquio às 18:30 (chegada 20:10)[cite: 4].</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 19/01/2027</strong><br><ol>
-            <li><strong><a href="https://ginza6.tokyo/" target="_blank">Ginza Six Shopping Complex</a>:</strong> O shopping mais sofisticado de Ginza com marcas globais e arquitetura impressionante[cite: 1, 2].</li>
-            <li><strong><a href="https://www.loft.co.jp/" target="_blank">Ginza Loft</a>:</strong> Loja de 6 andares com as maiores tendências de beleza, papelaria e acessórios[cite: 1, 2].</li>
-            <li><strong><a href="https://www.ginza-kushikawa.jp/" target="_blank">Ginza Kushikawa</a>:</strong> Culinária requintada e refinada em Ginza[cite: 1, 2].</li>
-            <li><strong><a href="https://www.cafe-paulista.co.jp/" target="_blank">Café Paulista Ginza</a>:</strong> A cafeteria mais antiga de Ginza, fundada em 1911[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Ginza Core</a>:</strong> Localização central para paradas rápidas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.wako.co.jp/" target="_blank">Wako Department Store Ginza</a>:</strong> Ícone histórico de Ginza conhecido pelos relógios de luxo e vitrines elegantes[cite: 1, 2].</li>
-            <li><strong><a href="https://www.uniqlo.com/jp/ja/" target="_blank">Uniqlo Ginza Flagship</a>:</strong> A maior loja da Uniqlo do mundo, com 12 andares de roupas térmicas e casacos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.mitsukoshi.mistore.jp/ginza.html" target="_blank">Mitsukoshi Ginza Department Store</a>:</strong> Tradicional loja de departamentos com o famoso andar de confeitarias finas (Depachika)[cite: 1, 2].</li>
-            <li><strong><a href="https://store.starbucks.co.jp/" target="_blank">Starbucks Ginza Marronnier Street</a>:</strong> Unidade espaçosa e elegante para relaxar no distrito de luxo[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Ginza 4-chome</a>:</strong> Conveniência prática perto das principais avenidas[cite: 1, 2].</li>
+            <li><strong>Zenko-ji Temple Shops:</strong> Souvenirs tradicionais[cite: 4].</li>
+            <li><strong>Shinshu Soba Restaurants:</strong> Soba autêntica[cite: 4].</li>
+            <li><strong>Jigokudani Park Shop:</strong> Lembranças dos macacos da neve.</li>
+            <li><strong>Matsumoto Castle:</strong> Arquitetura feudal[cite: 4].</li>
+            <li><strong>Nagano Station Bento:</strong> Bentos regionais de trem.</li>
+            <li><strong>Starbucks Nagano:</strong> Café.</li>
+            <li><strong>7-Eleven Nagano:</strong> Conveniência.</li>
+            <li><strong>Local Craft Shops:</strong> Artesanato em madeira.</li>
+            <li><strong>Lawson Nagano:</strong> Snacks.</li>
+            <li><strong>Shinkansen Hokuriku Kiosk:</strong> Lanches de bordo.</li>
         </ol>`
     },
     "20/01": {
-        city: "Retorno", hotel: "Embarque Aeroporto",
-        iconA: "✈️ Narita Express", iconB: "🛫 Voo Retorno", iconC: "🧳 Despedida",
-        A: `<strong>Plano A (Roteiro Original) - 20/01/2027 (Retorno ao Brasil)</strong><br>
-            <strong>Atividade:</strong> Retorno via Aeroporto de Narita (<a href="https://www.jreast.co.jp/" target="_blank">Narita Express</a>) (<a href="https://www.narita-airport.jp/" target="_blank">Site Aeroporto</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Embarque no <a href="https://www.jreast.co.jp/" target="_blank">Narita Express</a> em Shinjuku (1h20)[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Refeições rápidas no <a href="https://www.narita-airport.jp/" target="_blank">Aeroporto de Narita</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 13.000</span>[cite: 1, 2]`,
-        B: `<strong>Plano B (Imersão Cultural) - 20/01/2027 (Retorno ao Brasil)</strong><br>
-            <strong>Atividade:</strong> Retorno via Aeroporto de Narita (<a href="https://www.narita-airport.jp/" target="_blank">Narita Express</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Idêntico ao Plano A[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Restaurantes do <a href="https://www.narita-airport.jp/" target="_blank">Aeroporto de Narita</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 13.000</span>[cite: 1, 2]`,
-        C: `<strong>Plano C (Roteiro Tranquilo) - 20/01/2027 (Retorno ao Brasil)</strong><br>
-            <strong>Atividade:</strong> Retorno via Aeroporto de Narita (<a href="https://www.jreast.co.jp/" target="_blank">Narita Express</a>)[cite: 1, 2].<br>
-            <strong>Passo a Passo:</strong> Idêntico ao Plano A com assentos reservados[cite: 1, 2].<br>
-            <strong>Restaurantes:</strong> Praça de alimentação do <a href="https://www.narita-airport.jp/" target="_blank">Aeroporto de Narita</a>[cite: 1, 2].<br>
-            <span class="cost-tag">Custo para 4 pessoas: ¥ 13.000</span>[cite: 1, 2]`,
+        city: "Retorno", hotel: "Aeroporto",
+        iconA: "✈️ Narita Express", iconB: "🧳 Despedida", iconC: "🛫 Voo Brasil",
+        A: `<strong>Plano A - 20/01/2027 (Retorno ao Brasil)</strong><br>
+            <strong>Atividade:</strong> Narita Express ou GoTaxi para o Aeroporto. Retorno ao Brasil[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 13.000</span>`,
+        B: `<strong>Plano B - 20/01/2027 (Retorno ao Brasil)</strong><br>
+            <strong>Atividade:</strong> Narita Express direto de Shinjuku para o Aeroporto de Narita[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 13.000</span>`,
+        C: `<strong>Plano C - 20/01/2027 (Retorno ao Brasil)</strong><br>
+            <strong>Atividade:</strong> GoTaxi direto de Shinjuku até o aeroporto para o grupo e malas[cite: 4].<br>
+            <span class="cost-tag">Custo para 4 pessoas: ¥ 25.000</span>`,
         LOG: `<strong>🧭 Logística Detalhada - 20/01/2027 (Retorno ao Brasil)</strong><br>
             <ul>
-                <li><strong>Local de Saída:</strong> Estação Shinjuku[cite: 1, 2].</li>
-                <li><strong>Local de Chegada:</strong> Aeroporto de Narita (Terminais 1, 2 ou 3)[cite: 1, 2].</li>
-                <li><strong>Tipo de Passagem:</strong> Bilhete Narita Express (N'EX) reservado com antecedência[cite: 1, 2].</li>
-                <li><strong>Tempo de Espera e Trânsito:</strong> Chegar 20 min antes na plataforma; tempo de percurso de 1h20[cite: 1, 2].</li>
+                <li><strong>IDA:</strong> Saída do WPÜ Hotel Shinjuku 4 horas antes do voo + Narita Express na Estação Shinjuku direto para o Aeroporto de Narita (1h20)[cite: 4].</li>
+                <li><strong>VOLTA:</strong> Voo internacional de retorno ao Brasil[cite: 4].</li>
             </ul>`,
         DICAS: `<strong>💡 10 Dicas de Lojas, Compras e Gastronomia - 20/01/2027</strong><br><ol>
-            <li><strong><a href="https://www.narita-airport.jp/" target="_blank">Narita Airport Shopping Mall (Nakamise)</a>:</strong> Lojas duty-free completas para lembranças de última hora[cite: 1, 2].</li>
-            <li><strong><a href="https://www.narita-airport.jp/" target="_blank">FaSoLa Tax Free Akihabara (Narita)</a>:</strong> Loja no aeroporto com fones de ouvido, eletrônicos e gadgets isentos de impostos[cite: 1, 2].</li>
-            <li><strong><a href="https://www.narita-airport.jp/" target="_blank">Narita Airport Dining Street</a>:</strong> Variedade de restaurantes de ramen e sushi antes do embarque[cite: 1, 2].</li>
-            <li><strong><a href="https://store.starbucks.co.jp/" target="_blank">Starbucks Coffee Narita Airport</a>:</strong> Café relaxante para preencher as últimas horas antes do voo[cite: 1, 2].</li>
-            <li><strong><a href="https://www.lawson.co.jp/" target="_blank">Lawson Narita Airport Terminal 2</a>:</strong> Ideal para gastar as últimas moedas de Iene em snacks e doces[cite: 1, 2].</li>
-            <li><strong><a href="https://www.narita-airport.jp/" target="_blank">Narita Airport 3rd Terminal Food Court</a>:</strong> Praça de alimentação ampla com opções variadas de refeições rápidas[cite: 1, 2].</li>
-            <li><strong><a href="https://www.narita-airport.jp/" target="_blank">FaSoLa Star Jewelry & Watches (Narita)</a>:</strong> Lojas duty-free de acessórios e relógios de marcas internacionais[cite: 1, 2].</li>
-            <li><strong><a href="https://www.narita-airport.jp/" target="_blank">JAL PLAZA Duty Free (Narita)</a>:</strong> Loja excelente para chocolates japoneses (Tokyo Banana, Royce) e souvenirs[cite: 1, 2].</li>
-            <li><strong><a href="https://www.sej.co.jp/" target="_blank">7-Eleven Narita Airport Terminal 2</a>:</strong> Última conveniência antes dos portões de embarque internacional[cite: 1, 2].</li>
-            <li><strong><a href="https://www.anafesta.com/" target="_blank">ANA FESTA Gift Shop (Narita)</a>:</strong> Loja especializada em quitutes regionais de todo o Japão para levar de presente[cite: 1, 2].</li>
+            <li><strong>Narita Nakamise Mall:</strong> Duty-free de última hora[cite: 5].</li>
+            <li><strong>FaSoLa Tax Free Akiba:</strong> Eletrônicos isentos[cite: 5].</li>
+            <li><strong>Narita Dining Street:</strong> Último ramen.</li>
+            <li><strong>Starbucks Narita:</strong> Café.</li>
+            <li><strong>Lawson Narita T2:</strong> Snacks[cite: 5].</li>
+            <li><strong>Terminal 3 Food Court:</strong> Praça de alimentação[cite: 5].</li>
+            <li><strong>FaSoLa Star Jewelry:</strong> Joias e relógios[cite: 5].</li>
+            <li><strong>JAL PLAZA Duty Free:</strong> Doces japoneses (Tokyo Banana)[cite: 5].</li>
+            <li><strong>7-Eleven Narita T2:</strong> Conveniência.</li>
+            <li><strong>ANA FESTA Gift Shop:</strong> Lembranças regionais[cite: 5].</li>
         </ol>`
     }
 };
@@ -1001,7 +837,6 @@ function createCalendar() {
     const calendar = document.getElementById('calendar');
     calendar.innerHTML = '';
     
-    // Cabeçalhos dos Dias da Semana (Estilo Calendário Tradicional)
     const weekdays = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
     weekdays.forEach(wd => {
         const header = document.createElement('div');
@@ -1010,7 +845,7 @@ function createCalendar() {
         calendar.appendChild(header);
     });
 
-    // 31/12/2026 cai numa Quinta-feira (Índice 4: Dom=0, Seg=1, Ter=2, Qua=3, Qui=4)[cite: 1, 2]
+    // 31/12/2026 cai numa Quinta-feira (Índice 4: Dom=0, Seg=1, Ter=2, Qua=3, Qui=4)
     const offset = 4;
     for (let i = 0; i < offset; i++) {
         const empty = document.createElement('div');
@@ -1034,10 +869,14 @@ function createCalendar() {
 function openDay(date) {
     document.getElementById('details').style.display = 'block';
     document.getElementById('dayTitle').innerText = "Programação do dia: " + date + " de 2027";
-    document.getElementById('content').innerHTML = "Selecione uma opção acima (Plano A, B, C, Como Chegar ou Dicas) para visualizar os detalhes.";
+    
+    // AUDITORIA: Nenhum conteúdo é exibido automaticamente ao abrir o dia.
+    const contentBox = document.getElementById('content');
+    contentBox.innerHTML = "👈 Selecione uma das opções acima (Plano A, B, C, Como Chegar ou Dicas) para exibir as informações.";
+    contentBox.className = "content-box";
+    
     window.selectedDate = date;
     
-    // Atualiza os ícones/textos dos botões dos planos de acordo com o dia selecionado
     const data = tripData[date];
     document.getElementById('btnA').innerHTML = data.iconA || "Plano A";
     document.getElementById('btnB').innerHTML = data.iconB || "Plano B";
@@ -1049,10 +888,13 @@ function openDay(date) {
 function showPlan(plan) {
     if (!window.selectedDate) return;
     const data = tripData[window.selectedDate];
+    const contentBox = document.getElementById('content');
+    contentBox.className = "content-box active";
+    
     if (data && data[plan]) {
-        document.getElementById('content').innerHTML = data[plan];
+        contentBox.innerHTML = data[plan];
     } else {
-        document.getElementById('content').innerHTML = "Informações indisponíveis.";
+        contentBox.innerHTML = "Informações indisponíveis.";
     }
 }
 
